@@ -1,0 +1,6 @@
+ip-base-datos = 172.24.4.18
+usuario-base-datos = waspmotetest
+clave-base-datos = waspmotetest
+nombre-base-de-datos = waspmote_test
+puerto-servidor = 3306
+oracle-sid = ed
