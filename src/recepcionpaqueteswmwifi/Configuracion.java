@@ -20,6 +20,7 @@ public class Configuracion {
     public static final String NOMBRE_BASE_DATOS = "nombre-base-de-datos";
     public static final String PUERTO_SERVIDOR = "puerto-servidor";
     public static final String ORACLE_SID = "oracle-sid";
+    public static final String SERVIDOR_NTP = "servidor-ntp";
     
     //Propiedades donde almacenaremos los datos leidos del
     //archivo de texto
@@ -35,7 +36,6 @@ public class Configuracion {
         catch(Exception e){
             System.out.println("Error al crear configuracion");
         }
-    
     }
     
     /**

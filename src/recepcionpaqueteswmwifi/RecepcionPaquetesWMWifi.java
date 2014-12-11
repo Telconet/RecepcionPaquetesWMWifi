@@ -42,6 +42,13 @@ public class RecepcionPaquetesWMWifi {
         try{
             
             //test
+            String ruta = args[3];
+            Configuracion conf = new Configuracion(ruta);
+            
+            ClienteNTP cliente = new ClienteNTP(Configuracion.SERVIDOR_NTP);        
+            
+            String[] tiempo = cliente.solicitarTiempo();
+            
             String datos = "<=>\u0080\u0008#34543#BOSQUE_1#12#BAT:91#MCP:85.3#DUST:0.08258#TCA:23.4#HUMA:33.3#LUM:56.77#DATE:14-11-25#TIME:00-49-52+5#";  //confirmado formato hora/fecha
             
             System.out.println("tamaño paquete: " + datos.length());            
@@ -53,8 +60,7 @@ public class RecepcionPaquetesWMWifi {
             KnockKnockProtocol kkp = new KnockKnockProtocol();            
             Mediciones med = kkp.procesarDatos(datos, WASPMOTE_CIUDAD);
             
-            String ruta = args[3];
-            Configuracion conf = new Configuracion(ruta);
+            
             
              if(med != null){
                 
@@ -66,7 +72,7 @@ public class RecepcionPaquetesWMWifi {
                 BaseDeDatos bd = new BaseDeDatos(BaseDeDatos.POSTGRE_DB, null, conf.obtenerParametro(Configuracion.IP_BASE_DE_DATOS), 
                                                         conf.obtenerParametro(Configuracion.USUARIO_BASE_DE_DATOS), 
                                                         conf.obtenerParametro(Configuracion.CLAVE_BASE_DE_DATOS),
-                                                        5432, "ed");
+                                                        5432, null);
                 
                 bd.conectar(conf.obtenerParametro(Configuracion.NOMBRE_BASE_DATOS));
                 //TODO...

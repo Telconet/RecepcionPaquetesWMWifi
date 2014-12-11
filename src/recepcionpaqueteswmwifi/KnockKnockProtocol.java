@@ -101,7 +101,6 @@ public class KnockKnockProtocol {
         
         Mediciones mediciones = new Mediciones(numeroMediciones, idWaspmote);
         
-        
         int indice = -1;
         int conteo  = 0;
         while(true){
@@ -132,10 +131,7 @@ public class KnockKnockProtocol {
             //Creamos la medicion
             mediciones.agregarMedicion(medicion);
 
-            
-            //Continuamos extrayendo los strings de los datos.
-            //infoSinHeader = infoSinHeader.substring(indiceNumeral + 1);
-            
+            //Continuamos extrayendo los strings de los datos.          
             indiceNumeral = indiceNumeral2 + 1;
             
         }

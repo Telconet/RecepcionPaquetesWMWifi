@@ -40,6 +40,7 @@ public class Mediciones {
     public static final String SENSOR_PH = "PH";
     public static final String SENSOR_OXIGENO_DISUELTO = "DO";
     public static final String SENSOR_ULTRASONIDO = "US";
+    public static final String SENSOR_STRING = "STR";
     
     public static final double ERROR_MEDICION = -9999999999999999.99;
     public static final double LIMITE_MEDICION = -50000.0;
@@ -54,6 +55,8 @@ public class Mediciones {
         this.numeroMediciones = 0;
         this.idWaspmote = idWaspmote;
         this.tiempoProcesado = false;
+        this.hora = null;
+        this.fecha = null;
     }
     
     //Ya que una medicion puede tener 3 valores (ej. el acelerometro), devolvemos
@@ -118,7 +121,17 @@ public class Mediciones {
     public String fechaMedicion(){
         
         if(!tiempoProcesado){
-            procesarTiempo();
+            if(!procesarTiempo()){
+                //TODO...
+                ClienteNTP cliente = new ClienteNTP(Configuracion.SERVIDOR_NTP);
+                String[] datos = cliente.solicitarTiempo();
+                this.fecha = datos[0];
+                this.hora = datos[1];
+                if(this.fecha != null && this.hora != null){
+                    this.tiempoProcesado = true;
+                }
+                else this.tiempoProcesado = false;
+            }
         }
         return fecha;            //TODO
         
@@ -130,7 +143,17 @@ public class Mediciones {
         
         //#TIME:13-01-01# o #TIME:13-01-01-5# / #TIME:13-01-01+5#
         if(!tiempoProcesado){
-            procesarTiempo();
+            if(!procesarTiempo()){
+                //No existe tiempo en el paquete. Usamos tiempo del servidor.
+                ClienteNTP cliente = new ClienteNTP(Configuracion.SERVIDOR_NTP);
+                String[] datos = cliente.solicitarTiempo();
+                this.fecha = datos[0];
+                this.hora = datos[1];
+                if(this.fecha != null && this.hora != null){
+                    this.tiempoProcesado = true;
+                }
+                else this.tiempoProcesado = false;
+            }
         }
         return hora;            //TODO  
     }

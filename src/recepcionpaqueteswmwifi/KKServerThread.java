@@ -38,22 +38,30 @@ public class KKServerThread  extends Thread{
             KnockKnockProtocol kkp = new KnockKnockProtocol();
             
             //procesamos y alamcenamos los datos
-            Mediciones med = kkp.procesarDatos(entrada.readLine(), tipo);
+            String datos = entrada.readLine();
             
-            if(med != null){
-                
-                BaseDeDatos bd = new BaseDeDatos(tipo, null, conf.obtenerParametro(Configuracion.IP_BASE_DE_DATOS), 
-                                                        conf.obtenerParametro(Configuracion.USUARIO_BASE_DE_DATOS), 
-                                                        conf.obtenerParametro(Configuracion.CLAVE_BASE_DE_DATOS),
-                                                        Integer.parseInt(conf.obtenerParametro(Configuracion.PUERTO_SERVIDOR)), 
-                                                        conf.obtenerParametro(Configuracion.ORACLE_SID));
-                
-                //TODO...
-                bd.conectar("waspmote_test");
-                bd.insertarRegistro(tipo, med);
-                bd.cerrar();
+            if(datos.contains("STATUS")){ 
+                //TODO... GUARDAR EVENTO
             }
+            else if(datos.contains("SYNC_TIEMPO")){
+                //TODO... ENVIAR TIEMPO AL WASPOMOTE...
+            }
+            else{
+                Mediciones med = kkp.procesarDatos(datos, tipo);
+                
+                if(med != null){
+                
+                    BaseDeDatos bd = new BaseDeDatos(tipo, null, conf.obtenerParametro(Configuracion.IP_BASE_DE_DATOS), 
+                                                            conf.obtenerParametro(Configuracion.USUARIO_BASE_DE_DATOS), 
+                                                            conf.obtenerParametro(Configuracion.CLAVE_BASE_DE_DATOS),
+                                                            Integer.parseInt(conf.obtenerParametro(Configuracion.PUERTO_SERVIDOR)), 
+                                                            conf.obtenerParametro(Configuracion.ORACLE_SID));
 
+                    bd.conectar("waspmote_test");
+                    bd.insertarRegistro(tipo, med);
+                    bd.cerrar();
+                }
+            }
         }
         catch(IOException e){
             System.out.println("Error al recibir datos del Waspmote");
