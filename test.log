@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2014-12-12T09:51:49</date>
+  <millis>1418395909909</millis>
+  <sequence>0</sequence>
+  <logger>java.lang.Class</logger>
+  <level>WARNING</level>
+  <class>recepcionpaqueteswmwifi.BaseDeDatos</class>
+  <method>conectar</method>
+  <thread>1</thread>
+  <message>Connection refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.</message>
+  <exception>
+    <message>org.postgresql.util.PSQLException: Connection refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.</message>
+    <frame>
+      <class>org.postgresql.core.v3.ConnectionFactoryImpl</class>
+      <method>openConnectionImpl</method>
+      <line>215</line>
+    </frame>
+    <frame>
+      <class>org.postgresql.core.ConnectionFactory</class>
+      <method>openConnection</method>
+      <line>64</line>
+    </frame>
+    <frame>
+      <class>org.postgresql.jdbc2.AbstractJdbc2Connection</class>
+      <method>&lt;init&gt;</method>
+      <line>144</line>
+    </frame>
+    <frame>
+      <class>org.postgresql.jdbc3.AbstractJdbc3Connection</class>
+      <method>&lt;init&gt;</method>
+      <line>29</line>
+    </frame>
+    <frame>
+      <class>org.postgresql.jdbc3g.AbstractJdbc3gConnection</class>
+      <method>&lt;init&gt;</method>
+      <line>21</line>
+    </frame>
+    <frame>
+      <class>org.postgresql.jdbc4.AbstractJdbc4Connection</class>
+      <method>&lt;init&gt;</method>
+      <line>31</line>
+    </frame>
+    <frame>
+      <class>org.postgresql.jdbc4.Jdbc4Connection</class>
+      <method>&lt;init&gt;</method>
+      <line>24</line>
+    </frame>
+    <frame>
+      <class>org.postgresql.Driver</class>
+      <method>makeConnection</method>
+      <line>410</line>
+    </frame>
+    <frame>
+      <class>org.postgresql.Driver</class>
+      <method>connect</method>
+      <line>280</line>
+    </frame>
+    <frame>
+      <class>java.sql.DriverManager</class>
+      <method>getConnection</method>
+      <line>579</line>
+    </frame>
+    <frame>
+      <class>java.sql.DriverManager</class>
+      <method>getConnection</method>
+      <line>221</line>
+    </frame>
+    <frame>
+      <class>recepcionpaqueteswmwifi.BaseDeDatos</class>
+      <method>conectar</method>
+      <line>87</line>
+    </frame>
+    <frame>
+      <class>recepcionpaqueteswmwifi.RecepcionPaquetesWMWifi</class>
+      <method>main</method>
+      <line>77</line>
+    </frame>
+  </exception>
+</record>

@@ -12,6 +12,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -93,14 +94,28 @@ public class BaseDeDatos {
 
         }
         catch(SQLException e){
-            Logger log = Logger.getLogger(Class.class.getName()); 
-            log.log(Level.WARNING, e.getMessage(), e);
-            return -1;
+            try{
+                FileHandler handler = new FileHandler("log_db.log", true);
+                Logger log = Logger.getLogger(Class.class.getName());
+                log.addHandler(handler);
+                log.log(Level.WARNING, e.getMessage(), e);
+                return -1;
+            }
+            catch(Exception w){
+                return -1;
+            }
         }
         catch(Exception e){
-            Logger log = Logger.getLogger(Class.class.getName()); 
-            log.log(Level.WARNING, e.getMessage(), e);
-            return -1;
+            try{
+                FileHandler handler = new FileHandler("log_db.log", true);
+                Logger log = Logger.getLogger(Class.class.getName());
+                log.addHandler(handler);
+                log.log(Level.WARNING, e.getMessage(), e);
+                return -1;
+            }
+            catch(Exception w){
+                return -1;
+            }
         }
     }
     
@@ -112,8 +127,16 @@ public class BaseDeDatos {
             }
         }
         catch(Exception e){
-            Logger log = Logger.getLogger(Class.class.getName()); 
-            log.log(Level.WARNING, e.getMessage(), e);
+            try{
+                FileHandler handler = new FileHandler("log_db.log", true);
+                Logger log = Logger.getLogger(Class.class.getName());
+                log.addHandler(handler);
+                log.log(Level.WARNING, e.getMessage(), e);
+                return;
+            }
+            catch(Exception w){
+                return;
+            }
         }
     }
     
@@ -263,9 +286,16 @@ public class BaseDeDatos {
 
         }
         catch(Exception e){
-            Logger log = Logger.getLogger(Class.class.getName()); 
-            log.log(Level.WARNING, e.getMessage(), e);
-            return -1;
+            try{
+                FileHandler handler = new FileHandler("log_db.log", true);
+                Logger log = Logger.getLogger(Class.class.getName());
+                log.addHandler(handler);
+                log.log(Level.WARNING, e.getMessage(), e);
+                return -1;
+            }
+            catch(Exception w){
+                return -1;
+            }
         }
     }
     
@@ -292,9 +322,16 @@ public class BaseDeDatos {
             }
         }
         catch(Exception e){
-            Logger log = Logger.getLogger(Class.class.getName()); 
-            log.log(Level.WARNING, e.getMessage(), e);
-            return false;
+            try{
+                FileHandler handler = new FileHandler("log_db.log", true);
+                Logger log = Logger.getLogger(Class.class.getName());
+                log.addHandler(handler);
+                log.log(Level.WARNING, e.getMessage(), e);
+                return false;
+            }
+            catch(Exception w){
+                return false;
+            }
         }
     }
 }

@@ -8,6 +8,9 @@ import com.mysql.jdbc.StringUtils;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sun.util.calendar.Gregorian;
 
 /**
@@ -190,8 +193,16 @@ public class Mediciones {
             
         }
         catch(ArrayIndexOutOfBoundsException e){
-            e.printStackTrace();
-            return -1;
+            try{
+                FileHandler handler = new FileHandler("log_errores.log", true);
+                Logger log = Logger.getLogger(Class.class.getName());
+                log.addHandler(handler);
+                log.log(Level.WARNING, e.getMessage(), e);
+                return -1;
+            }
+            catch(Exception w){
+                return -1;
+            }
         }
     }
 
@@ -301,8 +312,18 @@ public class Mediciones {
         }
     
         catch(Exception e){
-            this.tiempoProcesado = false;
-            return false;
+            try{
+                FileHandler handler = new FileHandler("log_errores.log", true);
+                Logger log = Logger.getLogger(Class.class.getName());
+                log.addHandler(handler);
+                log.log(Level.WARNING, e.getMessage(), e);
+                 this.tiempoProcesado = false;
+                return false;
+            }
+            catch(Exception w){
+                this.tiempoProcesado = false;
+                return false;
+            }
         }
     }
 }
