@@ -1,0 +1,7 @@
+servidor-ntp = time.nist.gov
+ip-base-datos = 172.24.4.10
+usuario-base-datos = waspmote
+clave-base-datos = waspmote
+nombre-base-de-datos = waspmote_data
+puerto-BD = 3306
+nombre-tabla-mediciones = Mediciones_test2

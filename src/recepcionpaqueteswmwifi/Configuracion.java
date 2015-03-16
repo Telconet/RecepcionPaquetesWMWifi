@@ -9,7 +9,7 @@ import java.io.*;
 
 /**
  *
- * @author Eduardo
+ * @author Eduardo Murillo
  */
 public class Configuracion {
     
@@ -18,9 +18,10 @@ public class Configuracion {
     public static final String USUARIO_BASE_DE_DATOS = "usuario-base-datos";
     public static final String CLAVE_BASE_DE_DATOS = "clave-base-datos";
     public static final String NOMBRE_BASE_DATOS = "nombre-base-de-datos";
-    public static final String PUERTO_SERVIDOR = "puerto-servidor";
+    public static final String PUERTO_BD = "puerto-BD";
     public static final String ORACLE_SID = "oracle-sid";
     public static final String SERVIDOR_NTP = "servidor-ntp";
+    public static final String NOMBRE_TABLA_MEDICIONES = "nombre-tabla-mediciones";
     
     //Propiedades donde almacenaremos los datos leidos del
     //archivo de texto
@@ -34,6 +35,7 @@ public class Configuracion {
             
         }
         catch(Exception e){
+            e.printStackTrace();
             System.out.println("Error al crear configuracion");
         }
     }

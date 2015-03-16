@@ -6,12 +6,10 @@ package recepcionpaqueteswmwifi;
 
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.net.ntp.NTPUDPClient;
-import org.apache.commons.net.ntp.NtpUtils;
 import org.apache.commons.net.ntp.NtpV3Packet;
 import org.apache.commons.net.ntp.TimeInfo;
 import org.apache.commons.net.ntp.TimeStamp;

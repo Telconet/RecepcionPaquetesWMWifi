@@ -4,16 +4,12 @@
  */
 package recepcionpaqueteswmwifi;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.PrintWriter;
-import java.io.InputStreamReader;
+import java.net.InetAddress;
 import java.net.ServerSocket;
-import java.net.Socket;
 
 /**
  *
- * @author Eduardo
+ * @author Eduardo Murillo
  */
 public class RecepcionPaquetesWMWifi {
 
@@ -26,7 +22,11 @@ public class RecepcionPaquetesWMWifi {
     public static final int WASPMOTE_CAMARONERA = 2;
     public static final int NUMERO_MEDICIONES_WM_CAMARONERA = 3;        //verificar
     public static final int WASPMOTE_INUNDACIONES = 3;
-    public static final int NUMERO_MEDICIONES_WM_INUNDACIONES = 2;      //verificar
+    public static final int NUMERO_MEDICIONES_WM_INUNDACIONES = 4;      //verificar
+    
+    //Usado solo para prueba WIFI
+    public static final int WASPMOTE_TEST = 4;
+    public static final int NUMERO_MEDICIONES_WM_TEST = 3;      //verificar BAT, TEMP y HUMEDAD
     
     
     //java -jar programa <tipo> <puerto de escucha> <bd> <ruta archivo>
@@ -45,43 +45,59 @@ public class RecepcionPaquetesWMWifi {
             String ruta = args[3];
             Configuracion conf = new Configuracion(ruta);
             
-            ClienteNTP cliente = new ClienteNTP(Configuracion.SERVIDOR_NTP);        
             
+            //BD test
+            
+            
+            
+            ClienteNTP cliente = new ClienteNTP(conf.obtenerParametro(Configuracion.SERVIDOR_NTP));    
             String[] tiempo = cliente.solicitarTiempo();
             
-            String datos = "<=>\u0080\u0008#34543#BOSQUE_1#12#BAT:91#MCP:85.3#DUST:0.08258#TCA:23.4#HUMA:33.3#LUM:56.77#DATE:14-11-25#TIME:00-49-52+5#";  //confirmado formato hora/fecha
-            
+            //String datos = "<=>\u0080\u0008#34543#BOSQUE_1#12#BAT:91#TCB:23.4#HUMB:33.3#";  //confirmado formato hora/fecha
+            /*String datos = "<=>\u0080\u0004#34543#BOSQUE_1#12#BAT:91#STR:what#DATE:14-11-25#TIME:00-49-52+5#";
             System.out.println("tamaño paquete: " + datos.length());            
             char[] arreglo = datos.toCharArray();
             byte numero = (byte)arreglo[3];
 
-            System.out.println(datos);
+            System.out.println(datos);*/
             
-            KnockKnockProtocol kkp = new KnockKnockProtocol();            
-            Mediciones med = kkp.procesarDatos(datos, WASPMOTE_CIUDAD);
+            /*KnockKnockProtocol kkp = new KnockKnockProtocol(conf.obtenerParametro(Configuracion.SERVIDOR_NTP));            
+            Mediciones med = kkp.procesarDatos(datos, WASPMOTE_TEST);
             
             
+            BaseDeDatos bd = new BaseDeDatos(BaseDeDatos.MYSQL_DB, null, conf.obtenerParametro(Configuracion.IP_BASE_DE_DATOS), 
+                                                            conf.obtenerParametro(Configuracion.USUARIO_BASE_DE_DATOS), 
+                                                            conf.obtenerParametro(Configuracion.CLAVE_BASE_DE_DATOS),
+                                                            Integer.parseInt(conf.obtenerParametro(Configuracion.PUERTO_BD)), 
+                                                            conf.obtenerParametro(Configuracion.ORACLE_SID), conf.obtenerParametro(Configuracion.NOMBRE_BASE_DATOS));
+
+            bd.conectar(); //conexion null
+            bd.insertarRegistro(WASPMOTE_TEST, med, conf.obtenerParametro(Configuracion.NOMBRE_TABLA_MEDICIONES));
+            bd.cerrar();*/
+            //Mediciones med = kkp.procesarDatos(datos, WASPMOTE_CIUDAD);
             
-             if(med != null){
+            
+             /*if(med != null){
                 
-                /*BaseDeDatos bd = new BaseDeDatos(BaseDeDatos.POSTGRE_DB, null, conf.obtenerParametro(Configuracion.IP_BASE_DE_DATOS), 
+                BaseDeDatos bd = new BaseDeDatos(BaseDeDatos.MYSQL_DB, null, conf.obtenerParametro(Configuracion.IP_BASE_DE_DATOS), 
                                                         conf.obtenerParametro(Configuracion.USUARIO_BASE_DE_DATOS), 
                                                         conf.obtenerParametro(Configuracion.CLAVE_BASE_DE_DATOS),
-                                                        Integer.parseInt(conf.obtenerParametro(Configuracion.PUERTO_SERVIDOR)));*/
+                                                        Integer.parseInt(conf.obtenerParametro(Configuracion.PUERTO_BD)), null);
                 //para postgres
-                BaseDeDatos bd = new BaseDeDatos(BaseDeDatos.POSTGRE_DB, null, conf.obtenerParametro(Configuracion.IP_BASE_DE_DATOS), 
+                /*BaseDeDatos bd = new BaseDeDatos(BaseDeDatos.POSTGRE_DB, null, conf.obtenerParametro(Configuracion.IP_BASE_DE_DATOS), 
                                                         conf.obtenerParametro(Configuracion.USUARIO_BASE_DE_DATOS), 
                                                         conf.obtenerParametro(Configuracion.CLAVE_BASE_DE_DATOS),
                                                         5432, null);
                 
                 bd.conectar(conf.obtenerParametro(Configuracion.NOMBRE_BASE_DATOS));
                 //TODO...
-                bd.insertarRegistro(WASPMOTE_CIUDAD, med);
+                bd.insertarRegistro(WASPMOTE_TEST, med);
+                //bd.insertarRegistro(WASPMOTE_CIUDAD, med);
                 bd.cerrar();
-            }
+            }*/
            
             //fin de test            
-            if(args.length < 4){
+            if(args.length < 5){
                 System.out.println("Numero insuficiente de argumentos");
                 System.exit(-1);
             }
@@ -104,6 +120,9 @@ public class RecepcionPaquetesWMWifi {
             else if(args[0].toLowerCase().contains("camaronera")){
                 tipo = WASPMOTE_CAMARONERA;
             }
+            else if(args[0].toLowerCase().contains("test")){
+                tipo = WASPMOTE_TEST;
+            }
             else{
                 System.out.println("Opcion de tipo de waspmote inválida.");
                 System.exit(-1);
@@ -125,6 +144,8 @@ public class RecepcionPaquetesWMWifi {
                 tipoDB = BaseDeDatos.POSTGRE_DB;
             }
             
+            //arg[4] es la ip
+            InetAddress addr = InetAddress.getByName(args[4]);
             //Abrimos archivo configuracion
             //String ruta = args[3];
             //Configuracion conf = new Configuracion(ruta);
@@ -137,12 +158,12 @@ public class RecepcionPaquetesWMWifi {
             
             
             //Creamos el socket
-            ServerSocket socketServidor = new ServerSocket(puerto);
+            ServerSocket socketServidor = new ServerSocket(puerto, 50, addr);
             boolean escuchar = true;
             
             //Aceptamos conexiones de clientes...
             while(escuchar){
-               new KKServerThread(socketServidor.accept(), tipo, conf).start();
+               new KKServerThread(socketServidor.accept(), tipo, tipoDB, conf).start();
             }
             
             socketServidor.close();
@@ -152,7 +173,7 @@ public class RecepcionPaquetesWMWifi {
             System.exit(-1);
         }
         catch(Exception e){
-            
+            e.printStackTrace();
         }
     }
 }

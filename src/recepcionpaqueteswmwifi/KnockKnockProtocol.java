@@ -10,6 +10,12 @@ package recepcionpaqueteswmwifi;
  */
 public class KnockKnockProtocol {
     
+    private String servidorNTP;
+    
+   public KnockKnockProtocol(String servidorNTP){
+       this.servidorNTP = servidorNTP;
+   }
+    
     public Mediciones procesarDatos(String datos, int tipo){
         try{
             //TODO procesamos y almacenamos los datos 
@@ -70,8 +76,7 @@ public class KnockKnockProtocol {
             Mediciones med = extraerDatosWaspmote(datos, tipo, idWaspmote);
             
             //Almacenar datos 
-            //TODO.
-
+            //TODO
             return med;
         }
         catch(Exception e){
@@ -98,8 +103,11 @@ public class KnockKnockProtocol {
         else if(tipo == RecepcionPaquetesWMWifi.WASPMOTE_CAMARONERA){
             numeroMediciones = RecepcionPaquetesWMWifi.NUMERO_MEDICIONES_WM_CAMARONERA;
         }
+        else if(tipo == RecepcionPaquetesWMWifi.WASPMOTE_TEST){
+            numeroMediciones = RecepcionPaquetesWMWifi.NUMERO_MEDICIONES_WM_TEST;
+        }
         
-        Mediciones mediciones = new Mediciones(numeroMediciones, idWaspmote);
+        Mediciones mediciones = new Mediciones(numeroMediciones, idWaspmote, this.servidorNTP);
         
         int indice = -1;
         int conteo  = 0;

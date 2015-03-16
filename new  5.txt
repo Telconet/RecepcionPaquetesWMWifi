@@ -1,0 +1,306 @@
+run:
+C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection/
+Ruta de archivo token: C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//token.txt
+C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//token.txt
+C:\Program Files\Java\jdk1.7.0_09\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Measurement Computing\DAQ\;C:\PERL64\SITE\BIN;C:\PERL64\BIN;C:\PROGRAM FILES (X86)\INTEL\ICLS CLIENT\;C:\PROGRAM FILES\INTEL\ICLS CLIENT\;C:\Program Files\Common Files\MICROSOFT SHARED\WINDOWS LIVE;C:\WINDOWS\SYSTEM32;C:\WINDOWS;C:\WINDOWS\SYSTEM32\WBEM;C:\PROGRAM FILES (X86)\PYTHON\TCL\BIN;C:\WINDOWS\SYSTEM32\WINDOWSPOWERSHELL\V1.0\;C:\PROGRAM FILES (X86)\INTEL\OPENCL SDK\3.0\BIN\X86;C:\PROGRAM FILES (X86)\INTEL\OPENCL SDK\3.0\BIN\X64;C:\PROGRAM FILES (X86)\WINDOWS KITS\8.1\WINDOWS PERFORMANCE TOOLKIT\;C:\WINDOWS\SYSTEM32;C:\WINDOWS;C:\WINDOWS\SYSTEM32\WBEM;C:\WINDOWS\SYSTEM32\WINDOWSPOWERSHELL\V1.0\;C:\PROGRAM FILES\INTEL\INTEL(R) MANAGEMENT ENGINE COMPONENTS\DAL;C:\PROGRAM FILES\INTEL\INTEL(R) MANAGEMENT ENGINE COMPONENTS\IPT;C:\PROGRAM FILES (X86)\INTEL\INTEL(R) MANAGEMENT ENGINE COMPONENTS\DAL;C:\PROGRAM FILES (X86)\INTEL\INTEL(R) MANAGEMENT ENGINE COMPONENTS\IPT;C:\WINDOWS\SysWOW64;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\OrCAD\OrCAD_16.6_Lite\OpenAccess\bin\win32\opt;C:\OrCAD\OrCAD_16.6_Lite\tools\Capture;C:\OrCAD\OrCAD_16.6_Lite\tools\PSpice\Library;C:\OrCAD\OrCAD_16.6_Lite\tools\PSpice;C:\OrCAD\OrCAD_16.6_Lite\tools\specctra\bin;C:\OrCAD\OrCAD_16.6_Lite\tools\fet\bin;C:\OrCAD\OrCAD_16.6_Lite\tools\libutil\bin;C:\OrCAD\OrCAD_16.6_Lite\tools\bin;C:\OrCAD\OrCAD_16.6_Lite\tools\pcb\bin;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Modeltech_pe_edu_10.2c\win32pe_edu;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\Eduardo\Documents\NetBeansProjects\opencv\build\java\x64;C:\Users\Eduardo\Documents\NetBeansProjects\opencv\build\x64\vc10\bin\;.
+Camara OK.
+Detectando caras para imagen 0
+Detectando caras para imagen 1
+Detectando caras para imagen 4
+Detectando caras para imagen 3
+Detectando caras para imagen 2
+OpenCV detecto 2 caras en la imagen camera0.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output0.jpg
+OpenCV detecto 2 caras en la imagen camera4.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output4.jpg
+OpenCV detecto 2 caras en la imagen camera3.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output3.jpg
+OpenCV detecto 2 caras en la imagen camera1.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output1.jpg
+OpenCV detecto 2 caras en la imagen camera2.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output2.jpg
+Archivo subido: File("/camera0.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=339832, humanSize="331.9 KB", lastModified="2015/02/04 20:37:23 UTC", clientMtime="2015/02/04 20:37:23 UTC", rev="220309805c8")
+Archivo subido: File("/camera4.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=352216, humanSize="344 KB", lastModified="2015/02/04 20:37:24 UTC", clientMtime="2015/02/04 20:37:24 UTC", rev="221309805c8")
+Hilo 4 adquirio el mutex
+KAIROS: Imagen 4 enviada a Kairos...
+Archivo subido: File("/camera1.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=345993, humanSize="337.9 KB", lastModified="2015/02/04 20:37:25 UTC", clientMtime="2015/02/04 20:37:26 UTC", rev="222309805c8")
+Archivo subido: File("/camera3.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=350879, humanSize="342.7 KB", lastModified="2015/02/04 20:37:27 UTC", clientMtime="2015/02/04 20:37:27 UTC", rev="223309805c8")
+Archivo subido: File("/camera2.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=348955, humanSize="340.8 KB", lastModified="2015/02/04 20:37:27 UTC", clientMtime="2015/02/04 20:37:27 UTC", rev="224309805c8")
+Persona: eduardo-murillo, promedio: 0.6474249958992
+Hola [C@184dbba7 murillo.
+Hilo 4 libero el mutex
+Hilo 2 adquirio el mutex
+Hilo 2 libero el mutex
+Hilo 3 adquirio el mutex
+Detectando caras para imagen 5
+Hilo 0 adquirio el mutex
+Hilo 3 libero el mutex
+Detectando caras para imagen 6
+Detectando caras para imagen 7
+Hilo 1 adquirio el mutex
+Hilo 1 libero el mutex
+Detectando caras para imagen 8
+Hilo 0 libero el mutex
+Detectando caras para imagen 9
+OpenCV detecto 1 caras en la imagen camera9.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output9.jpg
+OpenCV detecto 2 caras en la imagen camera5.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output5.jpg
+OpenCV detecto 1 caras en la imagen camera7.jpg
+Archivo subido: File("/camera9.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=359354, humanSize="350.9 KB", lastModified="2015/02/04 20:37:42 UTC", clientMtime="2015/02/04 20:37:42 UTC", rev="225309805c8")
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output7.jpg
+OpenCV detecto 1 caras en la imagen camera8.jpg
+OpenCV detecto 2 caras en la imagen camera6.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output8.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output6.jpg
+Hilo 9 adquirio el mutex
+Hilo 9 libero el mutex
+Detectando caras para imagen 10
+Archivo subido: File("/camera5.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=353555, humanSize="345.3 KB", lastModified="2015/02/04 20:37:44 UTC", clientMtime="2015/02/04 20:37:44 UTC", rev="226309805c8")
+Hilo 5 adquirio el mutex
+Hilo 5 libero el mutex
+Detectando caras para imagen 11
+OpenCV detecto 1 caras en la imagen camera10.jpg
+Archivo subido: File("/camera7.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=356707, humanSize="348.3 KB", lastModified="2015/02/04 20:37:46 UTC", clientMtime="2015/02/04 20:37:46 UTC", rev="227309805c8")
+Archivo subido: File("/camera8.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=358402, humanSize="350 KB", lastModified="2015/02/04 20:37:47 UTC", clientMtime="2015/02/04 20:37:47 UTC", rev="228309805c8")
+Hilo 7 adquirio el mutex
+Hilo 7 libero el mutex
+Detectando caras para imagen 12
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output10.jpg
+Archivo subido: File("/camera6.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=355186, humanSize="346.9 KB", lastModified="2015/02/04 20:37:47 UTC", clientMtime="2015/02/04 20:37:47 UTC", rev="229309805c8")
+Hilo 8 adquirio el mutex
+Hilo 8 libero el mutex
+Detectando caras para imagen 13
+Hilo 6 adquirio el mutex
+Hilo 6 libero el mutex
+Detectando caras para imagen 14
+Archivo subido: File("/camera10.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=338770, humanSize="330.8 KB", lastModified="2015/02/04 20:37:48 UTC", clientMtime="2015/02/04 20:37:49 UTC", rev="22a309805c8")
+Hilo 10 adquirio el mutex
+Hilo 10 libero el mutex
+Detectando caras para imagen 15
+OpenCV detecto 1 caras en la imagen camera11.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output11.jpg
+Archivo subido: File("/camera11.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=348044, humanSize="339.9 KB", lastModified="2015/02/04 20:37:52 UTC", clientMtime="2015/02/04 20:37:52 UTC", rev="22b309805c8")
+Hilo 11 adquirio el mutex
+Hilo 11 libero el mutex
+Detectando caras para imagen 16
+OpenCV detecto 1 caras en la imagen camera12.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output12.jpg
+OpenCV detecto 1 caras en la imagen camera15.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output15.jpg
+Archivo subido: File("/camera12.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=351321, humanSize="343.1 KB", lastModified="2015/02/04 20:37:56 UTC", clientMtime="2015/02/04 20:37:56 UTC", rev="22c309805c8")
+Hilo 12 adquirio el mutex
+Hilo 12 libero el mutex
+Detectando caras para imagen 17
+Archivo subido: File("/camera15.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=356108, humanSize="347.8 KB", lastModified="2015/02/04 20:37:57 UTC", clientMtime="2015/02/04 20:37:57 UTC", rev="22d309805c8")
+OpenCV detecto 1 caras en la imagen camera13.jpg
+Hilo 15 adquirio el mutex
+Hilo 15 libero el mutex
+Detectando caras para imagen 18
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output13.jpg
+OpenCV detecto 1 caras en la imagen camera16.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output16.jpg
+OpenCV detecto 1 caras en la imagen camera14.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output14.jpg
+Archivo subido: File("/camera13.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=353410, humanSize="345.1 KB", lastModified="2015/02/04 20:38:00 UTC", clientMtime="2015/02/04 20:38:00 UTC", rev="22e309805c8")
+Hilo 13 adquirio el mutex
+Hilo 13 libero el mutex
+Detectando caras para imagen 19
+Archivo subido: File("/camera16.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=357113, humanSize="348.7 KB", lastModified="2015/02/04 20:38:01 UTC", clientMtime="2015/02/04 20:38:01 UTC", rev="22f309805c8")
+Hilo 16 adquirio el mutex
+Hilo 16 libero el mutex
+Detectando caras para imagen 20
+OpenCV detecto 1 caras en la imagen camera18.jpg
+Archivo subido: File("/camera14.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=355109, humanSize="346.8 KB", lastModified="2015/02/04 20:38:02 UTC", clientMtime="2015/02/04 20:38:02 UTC", rev="230309805c8")
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output18.jpg
+OpenCV detecto 1 caras en la imagen camera17.jpg
+Hilo 14 adquirio el mutex
+Hilo 14 libero el mutex
+Detectando caras para imagen 21
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output17.jpg
+Archivo subido: File("/camera18.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=359175, humanSize="350.8 KB", lastModified="2015/02/04 20:38:04 UTC", clientMtime="2015/02/04 20:38:04 UTC", rev="231309805c8")
+Hilo 18 adquirio el mutex
+Hilo 18 libero el mutex
+Detectando caras para imagen 22
+Archivo subido: File("/camera17.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=358167, humanSize="349.8 KB", lastModified="2015/02/04 20:38:05 UTC", clientMtime="2015/02/04 20:38:05 UTC", rev="232309805c8")
+Hilo 17 adquirio el mutex
+Hilo 17 libero el mutex
+Detectando caras para imagen 23
+OpenCV detecto 3 caras en la imagen camera20.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output20.jpg
+OpenCV detecto 3 caras en la imagen camera22.jpg
+Archivo subido: File("/camera20.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=339310, humanSize="331.4 KB", lastModified="2015/02/04 20:38:09 UTC", clientMtime="2015/02/04 20:38:10 UTC", rev="233309805c8")
+OpenCV detecto 1 caras en la imagen camera19.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output22.jpg
+Hilo 20 adquirio el mutex
+Hilo 20 libero el mutex
+Detectando caras para imagen 24
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output19.jpg
+OpenCV detecto 1 caras en la imagen camera23.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output23.jpg
+OpenCV detecto 4 caras en la imagen camera21.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output21.jpg
+Archivo subido: File("/camera19.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=360009, humanSize="351.6 KB", lastModified="2015/02/04 20:38:12 UTC", clientMtime="2015/02/04 20:38:13 UTC", rev="234309805c8")
+OpenCV detecto 3 caras en la imagen camera24.jpg
+Hilo 19 adquirio el mutex
+Hilo 19 libero el mutex
+Detectando caras para imagen 25
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output24.jpg
+Archivo subido: File("/camera22.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=351886, humanSize="343.6 KB", lastModified="2015/02/04 20:38:13 UTC", clientMtime="2015/02/04 20:38:13 UTC", rev="235309805c8")
+Hilo 22 adquirio el mutex
+Hilo 22 libero el mutex
+Detectando caras para imagen 26
+Archivo subido: File("/camera23.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=354041, humanSize="345.7 KB", lastModified="2015/02/04 20:38:15 UTC", clientMtime="2015/02/04 20:38:15 UTC", rev="236309805c8")
+Hilo 23 adquirio el mutex
+Hilo 23 libero el mutex
+Detectando caras para imagen 27
+Archivo subido: File("/camera24.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=355420, humanSize="347.1 KB", lastModified="2015/02/04 20:38:15 UTC", clientMtime="2015/02/04 20:38:15 UTC", rev="237309805c8")
+Hilo 24 adquirio el mutex
+Hilo 24 libero el mutex
+Detectando caras para imagen 28
+Archivo subido: File("/camera21.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=348692, humanSize="340.5 KB", lastModified="2015/02/04 20:38:16 UTC", clientMtime="2015/02/04 20:38:17 UTC", rev="238309805c8")
+Hilo 21 adquirio el mutex
+Hilo 21 libero el mutex
+Detectando caras para imagen 29
+OpenCV detecto 2 caras en la imagen camera26.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output26.jpg
+OpenCV detecto 1 caras en la imagen camera25.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output25.jpg
+OpenCV detecto 2 caras en la imagen camera28.jpg
+Archivo subido: File("/camera26.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=357881, humanSize="349.5 KB", lastModified="2015/02/04 20:38:21 UTC", clientMtime="2015/02/04 20:38:21 UTC", rev="239309805c8")
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output28.jpg
+Archivo subido: File("/camera25.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=356899, humanSize="348.5 KB", lastModified="2015/02/04 20:38:21 UTC", clientMtime="2015/02/04 20:38:22 UTC", rev="23a309805c8")
+Hilo 26 adquirio el mutex
+Hilo 26 libero el mutex
+Detectando caras para imagen 30
+OpenCV detecto 2 caras en la imagen camera27.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output27.jpg
+Hilo 25 adquirio el mutex
+Hilo 25 libero el mutex
+Detectando caras para imagen 31
+Archivo subido: File("/camera28.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=359868, humanSize="351.4 KB", lastModified="2015/02/04 20:38:23 UTC", clientMtime="2015/02/04 20:38:23 UTC", rev="23b309805c8")
+Hilo 28 adquirio el mutex
+Hilo 28 libero el mutex
+Detectando caras para imagen 32
+Archivo subido: File("/camera27.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=358879, humanSize="350.5 KB", lastModified="2015/02/04 20:38:24 UTC", clientMtime="2015/02/04 20:38:24 UTC", rev="23c309805c8")
+Hilo 27 adquirio el mutex
+Hilo 27 libero el mutex
+Detectando caras para imagen 33
+OpenCV detecto 2 caras en la imagen camera29.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output29.jpg
+OpenCV detecto 1 caras en la imagen camera30.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output30.jpg
+Archivo subido: File("/camera29.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=360748, humanSize="352.3 KB", lastModified="2015/02/04 20:38:27 UTC", clientMtime="2015/02/04 20:38:27 UTC", rev="23d309805c8")
+Hilo 29 adquirio el mutex
+Hilo 29 libero el mutex
+Detectando caras para imagen 34
+OpenCV detecto 2 caras en la imagen camera32.jpg
+Archivo subido: File("/camera30.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=339686, humanSize="331.7 KB", lastModified="2015/02/04 20:38:29 UTC", clientMtime="2015/02/04 20:38:29 UTC", rev="23e309805c8")
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output32.jpg
+Hilo 30 adquirio el mutex
+Hilo 30 libero el mutex
+Detectando caras para imagen 35
+OpenCV detecto 1 caras en la imagen camera33.jpg
+OpenCV detecto 2 caras en la imagen camera31.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output33.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output31.jpg
+Archivo subido: File("/camera32.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=354371, humanSize="346.1 KB", lastModified="2015/02/04 20:38:32 UTC", clientMtime="2015/02/04 20:38:32 UTC", rev="23f309805c8")
+Hilo 32 adquirio el mutex
+Hilo 32 libero el mutex
+Detectando caras para imagen 36
+Archivo subido: File("/camera33.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=355647, humanSize="347.3 KB", lastModified="2015/02/04 20:38:33 UTC", clientMtime="2015/02/04 20:38:33 UTC", rev="240309805c8")
+Hilo 33 adquirio el mutex
+Hilo 33 libero el mutex
+Detectando caras para imagen 37
+Archivo subido: File("/camera31.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=346443, humanSize="338.3 KB", lastModified="2015/02/04 20:38:34 UTC", clientMtime="2015/02/04 20:38:34 UTC", rev="241309805c8")
+OpenCV detecto 1 caras en la imagen camera35.jpg
+Hilo 31 adquirio el mutex
+Hilo 31 libero el mutex
+Detectando caras para imagen 38
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output35.jpg
+OpenCV detecto 2 caras en la imagen camera34.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output34.jpg
+Archivo subido: File("/camera35.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=357752, humanSize="349.4 KB", lastModified="2015/02/04 20:38:36 UTC", clientMtime="2015/02/04 20:38:36 UTC", rev="242309805c8")
+Hilo 35 adquirio el mutex
+Hilo 35 libero el mutex
+Detectando caras para imagen 39
+OpenCV detecto 2 caras en la imagen camera36.jpg
+Archivo subido: File("/camera34.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=356597, humanSize="348.2 KB", lastModified="2015/02/04 20:38:38 UTC", clientMtime="2015/02/04 20:38:38 UTC", rev="243309805c8")
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output36.jpg
+Hilo 34 adquirio el mutex
+Hilo 34 libero el mutex
+Detectando caras para imagen 40
+OpenCV detecto 3 caras en la imagen camera37.jpg
+Archivo subido: File("/camera36.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=338856, humanSize="330.9 KB", lastModified="2015/02/04 20:38:40 UTC", clientMtime="2015/02/04 20:38:40 UTC", rev="244309805c8")
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output37.jpg
+Hilo 36 adquirio el mutex
+Hilo 36 libero el mutex
+Detectando caras para imagen 41
+OpenCV detecto 2 caras en la imagen camera39.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output39.jpg
+Archivo subido: File("/camera37.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=348109, humanSize="340 KB", lastModified="2015/02/04 20:38:42 UTC", clientMtime="2015/02/04 20:38:42 UTC", rev="245309805c8")
+Hilo 37 adquirio el mutex
+Hilo 37 libero el mutex
+Detectando caras para imagen 42
+OpenCV detecto 2 caras en la imagen camera38.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output38.jpg
+Archivo subido: File("/camera39.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=353000, humanSize="344.7 KB", lastModified="2015/02/04 20:38:44 UTC", clientMtime="2015/02/04 20:38:44 UTC", rev="246309805c8")
+Hilo 39 adquirio el mutex
+Hilo 39 libero el mutex
+Detectando caras para imagen 43
+Archivo subido: File("/camera38.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=351162, humanSize="342.9 KB", lastModified="2015/02/04 20:38:45 UTC", clientMtime="2015/02/04 20:38:45 UTC", rev="247309805c8")
+OpenCV detecto 3 caras en la imagen camera41.jpg
+Hilo 38 adquirio el mutex
+Hilo 38 libero el mutex
+Detectando caras para imagen 44
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output41.jpg
+Archivo subido: File("/camera41.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=355801, humanSize="347.5 KB", lastModified="2015/02/04 20:38:47 UTC", clientMtime="2015/02/04 20:38:47 UTC", rev="248309805c8")
+Hilo 41 adquirio el mutex
+Hilo 41 libero el mutex
+Detectando caras para imagen 45
+OpenCV detecto 2 caras en la imagen camera40.jpg
+OpenCV detecto 2 caras en la imagen camera42.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output40.jpg
+OpenCV detecto 2 caras en la imagen camera43.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output42.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output43.jpg
+Archivo subido: File("/camera40.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=354470, humanSize="346.2 KB", lastModified="2015/02/04 20:38:51 UTC", clientMtime="2015/02/04 20:38:51 UTC", rev="249309805c8")
+Hilo 40 adquirio el mutex
+Hilo 40 libero el mutex
+Detectando caras para imagen 46
+Archivo subido: File("/camera42.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=356880, humanSize="348.5 KB", lastModified="2015/02/04 20:38:52 UTC", clientMtime="2015/02/04 20:38:52 UTC", rev="24a309805c8")
+OpenCV detecto 2 caras en la imagen camera45.jpg
+Hilo 42 adquirio el mutex
+Hilo 42 libero el mutex
+Detectando caras para imagen 47
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output45.jpg
+OpenCV detecto 2 caras en la imagen camera44.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output44.jpg
+Archivo subido: File("/camera45.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=359550, humanSize="351.1 KB", lastModified="2015/02/04 20:38:54 UTC", clientMtime="2015/02/04 20:38:54 UTC", rev="24b309805c8")
+Hilo 45 adquirio el mutex
+Hilo 45 libero el mutex
+Detectando caras para imagen 48
+Archivo subido: File("/camera44.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=358731, humanSize="350.3 KB", lastModified="2015/02/04 20:38:55 UTC", clientMtime="2015/02/04 20:38:55 UTC", rev="24c309805c8")
+Hilo 44 adquirio el mutex
+Hilo 44 libero el mutex
+Detectando caras para imagen 49
+OpenCV detecto 2 caras en la imagen camera47.jpg
+OpenCV detecto 1 caras en la imagen camera46.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output47.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output46.jpg
+OpenCV detecto 1 caras en la imagen camera48.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output48.jpg
+OpenCV detecto 1 caras en la imagen camera49.jpg
+Escribiendo C:/Users/Eduardo/Documents/NetBeansProjects/FaceDetection//detected_faces/output49.jpg
+Archivo subido: File("/camera47.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=346631, humanSize="338.5 KB", lastModified="2015/02/04 20:39:00 UTC", clientMtime="2015/02/04 20:39:00 UTC", rev="24d309805c8")
+Hilo 47 adquirio el mutex
+Hilo 47 libero el mutex
+Archivo subido: File("/camera46.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=337273, humanSize="329.4 KB", lastModified="2015/02/04 20:39:00 UTC", clientMtime="2015/02/04 20:39:00 UTC", rev="24e309805c8")
+Hilo 46 adquirio el mutex
+Hilo 46 libero el mutex
+Archivo subido: File("/camera48.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=349578, humanSize="341.4 KB", lastModified="2015/02/04 20:39:02 UTC", clientMtime="2015/02/04 20:39:02 UTC", rev="24f309805c8")
+Hilo 48 adquirio el mutex
+Hilo 48 libero el mutex
+Archivo subido: File("/camera49.jpg", iconName="page_white_picture", mightHaveThumbnail=true, numBytes=351784, humanSize="343.5 KB", lastModified="2015/02/04 20:39:04 UTC", clientMtime="2015/02/04 20:39:04 UTC", rev="250309805c8")
+Hilo 49 adquirio el mutex
+Hilo 49 libero el mutex

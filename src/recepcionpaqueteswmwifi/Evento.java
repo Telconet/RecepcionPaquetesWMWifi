@@ -6,7 +6,7 @@ package recepcionpaqueteswmwifi;
 
 /**
  *
- * @author Eduardo
+ * @author Eduardo Murillo
  */
 public class Evento {
     

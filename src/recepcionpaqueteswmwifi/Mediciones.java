@@ -11,11 +11,10 @@ import java.util.GregorianCalendar;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import sun.util.calendar.Gregorian;
 
 /**
  *
- * @author Eduardo
+ * @author Eduardo Murillo
  */
 public class Mediciones {
     
@@ -27,6 +26,7 @@ public class Mediciones {
     String fecha;
     String hora;
     private boolean tiempoProcesado;
+    private String servidorNTP;
     
     public static final String SENSOR_CO2 = "CO2";
     public static final String SENSOR_CO = "CO";
@@ -52,7 +52,7 @@ public class Mediciones {
     public static final String[] SENSORES = {SENSOR_CO2, SENSOR_CO, SENSOR_TEMPC, SENSOR_TEMPF, SENSOR_HUMEDAD, SENSOR_PRESION_ATMOSFERICA, SENSOR_MICROFONO,
                                                 SENSOR_POLVO, SENSOR_LUMINOSIDAD, SENSOR_BATERIA, SENSOR_HORA, SENSOR_FECHA, SENSOR_PH, SENSOR_OXIGENO_DISUELTO, SENSOR_ULTRASONIDO};
     
-    public Mediciones(int numeroMediciones, String idWaspmote){
+    public Mediciones(int numeroMediciones, String idWaspmote, String servidorNTP){
         this.medicion = new String[numeroMediciones];
         this.nombreMediciones = new String[numeroMediciones];
         this.numeroMediciones = 0;
@@ -60,6 +60,7 @@ public class Mediciones {
         this.tiempoProcesado = false;
         this.hora = null;
         this.fecha = null;
+        this.servidorNTP = servidorNTP;
     }
     
     //Ya que una medicion puede tener 3 valores (ej. el acelerometro), devolvemos
@@ -117,6 +118,49 @@ public class Mediciones {
         catch(NumberFormatException e){
             return ERROR_MEDICION;
         }
+    }
+    
+     /**
+      * Obtiene un string dentro del frame
+      * @param nombre
+      * @param subindice
+      * @return 
+      */
+     public String obtenerString(String nombre, int subindice){
+        try{
+            int indice = -1;
+            int j = 0;
+            
+            //Si es fecha u hora, debemos usar otras funciones 
+            if( nombre.equals("DATE") || nombre.equals("TIME")){
+                return null;
+            }
+            
+            //Buscamo el indice del nombre
+            for(int i = 0; i < nombreMediciones.length; i++){
+                //for(j = 0; j < SENSORES.length ; j++){
+                if(nombreMediciones[i].equalsIgnoreCase(nombre)){
+                    indice = i;
+                    break;
+                }
+            //}
+            }
+            
+            //Fecha/hora necesitan otro manejo.
+            if(indice == -1){
+                return null;              //para comparar usamos Double.IsNaN(valor);
+            }
+            
+            String[] mediciontmp = medicion[indice].split(";");
+            return mediciontmp[0];
+        }
+        catch(ArrayIndexOutOfBoundsException e){
+            e.printStackTrace();
+            return null;
+        }
+        catch(NumberFormatException e){
+            return null;
+        }
         
     }
     
@@ -126,7 +170,7 @@ public class Mediciones {
         if(!tiempoProcesado){
             if(!procesarTiempo()){
                 //TODO...
-                ClienteNTP cliente = new ClienteNTP(Configuracion.SERVIDOR_NTP);
+                ClienteNTP cliente = new ClienteNTP(this.servidorNTP);
                 String[] datos = cliente.solicitarTiempo();
                 this.fecha = datos[0];
                 this.hora = datos[1];
@@ -148,7 +192,7 @@ public class Mediciones {
         if(!tiempoProcesado){
             if(!procesarTiempo()){
                 //No existe tiempo en el paquete. Usamos tiempo del servidor.
-                ClienteNTP cliente = new ClienteNTP(Configuracion.SERVIDOR_NTP);
+                ClienteNTP cliente = new ClienteNTP(this.servidorNTP);
                 String[] datos = cliente.solicitarTiempo();
                 this.fecha = datos[0];
                 this.hora = datos[1];
