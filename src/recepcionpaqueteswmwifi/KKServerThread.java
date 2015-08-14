@@ -30,18 +30,18 @@ public class KKServerThread  extends Thread{
     public void run(){
         try{
             
-            System.out.println("Se conecto el waspmote con IP: " + socket.getInetAddress().getHostName() + " al puerto local " + socket.getLocalPort());
-                        
-            //Obtenemos los streams para leer o escribir datos al socket.
-            PrintWriter salida = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            String datos = entrada.readLine(); 
+            
+            System.out.println("Se conecto el waspmote con IP: " + socket.getInetAddress().getHostName() + " al puerto local " + socket.getLocalPort());
+                      
             
             //string recibidos/enviados
-            String lineaEntrada, lineaSalida;
             KnockKnockProtocol kkp = new KnockKnockProtocol(conf.obtenerParametro(Configuracion.SERVIDOR_NTP));
             
             //procesamos y alamcenamos los datos
-            String datos = entrada.readLine();
+            System.out.println("what");
+
             System.out.append(datos + "\n");
             
             /*if(datos.contains("STATUS")){ 
@@ -54,6 +54,7 @@ public class KKServerThread  extends Thread{
             Mediciones med = kkp.procesarDatos(datos, tipo);
 
             System.out.println("Datos procesados");
+            socket.close();             //ánadido
 
             if(med != null){
 

@@ -157,24 +157,34 @@ public class BaseDeDatos {
                 
             }
             else if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_INUNDACIONES){
-                consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_waspmote, nivel_agua) VALUES ('" + 
+                consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_waspmote, bateria, nivel_agua) VALUES ('" + 
                                   mediciones.fechaMedicion() + "', '" + mediciones.horaMedicion() + "', '" +
-                                  mediciones.obtenerIdWaspmote() + "', " + mediciones.obtenerMedicion(Mediciones.SENSOR_ULTRASONIDO, 0) + ")";
+                                  mediciones.obtenerIdWaspmote() + "', " +  mediciones.obtenerMedicion(Mediciones.SENSOR_BATERIA, 0) + "," +
+                                  mediciones.obtenerMedicion(Mediciones.SENSOR_ULTRASONIDO, 0) + ")";
 
             }
             else if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_CAMARONERA){
-                consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_waspmote, acidez, oxigeno_disuelto) VALUES ('" + 
+                consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_waspmote, bateria, temperatura, acidez, oxigeno_disuelto) VALUES ('" + 
                                   mediciones.fechaMedicion() + "', '" + mediciones.horaMedicion() + "', '" +
-                                  mediciones.obtenerIdWaspmote() + "', " + mediciones.obtenerMedicion(Mediciones.SENSOR_PH, 0) +  ", " + 
+                                  mediciones.obtenerIdWaspmote() + "', " + mediciones.obtenerMedicion(mediciones.SENSOR_BATERIA, 0) + ", " +
+                                  mediciones.obtenerMedicion(Mediciones.SENSOR_TEMPC, 0) + ", " + mediciones.obtenerMedicion(Mediciones.SENSOR_PH, 0) +  ", " + 
                                   mediciones.obtenerMedicion(Mediciones.SENSOR_OXIGENO_DISUELTO, 0) + ")";
             }
             
-            if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_TEST){
+            else if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_BOSQUES){
+                consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_waspmote, bateria, temperatura, humedad, CO2ppm) VALUES ('" + 
+                                  mediciones.fechaMedicion() + "', '" + mediciones.horaMedicion() + "', '" +
+                                  mediciones.obtenerIdWaspmote() + "', " + mediciones.obtenerMedicion(mediciones.SENSOR_BATERIA, 0) + ", " +
+                                  mediciones.obtenerMedicion(Mediciones.SENSOR_TEMPC, 0) + ", " + mediciones.obtenerMedicion(Mediciones.SENSOR_HUMEDAD, 0) +  ", " + 
+                                  mediciones.obtenerMedicion(Mediciones.SENSOR_CO2, 0) + ")";
+            }
+            
+            else if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_TEST){
                 
                 consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_waspmote, bateria, temperatura, humedad) VALUES ('" + 
                                   mediciones.fechaMedicion() + "', '" + mediciones.horaMedicion() + "', '" +
                                   mediciones.obtenerIdWaspmote() + "', " + mediciones.obtenerMedicion(Mediciones.SENSOR_BATERIA, 0) + ", " +
-                                  mediciones.obtenerMedicion(Mediciones.SENSOR_TEMPC, 0) + ", " + mediciones.obtenerMedicion(Mediciones.SENSOR_HUMEDAD, 0) + ")";
+                                  mediciones.obtenerMedicion(Mediciones.SENSOR_TEMPC, 0) + ", " + mediciones.obtenerMedicion(Mediciones.SENSOR_HUMEDAD, 0) +  ")";
                 
             }
 
@@ -229,6 +239,7 @@ public class BaseDeDatos {
                                            "fecha DATE, " +
                                            "hora TIME, " +
                                            "id_waspmote VARCHAR(255), " +
+                                           "bateria DOUBLE, " +
                                            "nivel_agua DOUBLE)";
                     }
                     else if(this.tipoBD == POSTGRE_DB){
@@ -236,6 +247,7 @@ public class BaseDeDatos {
                                            "fecha DATE, " +
                                            "hora TIME, " +
                                            "id_waspmote VARCHAR(255), " +
+                                           "bateria DOUBLE, " +
                                            "nivel_agua REAL)";
                     }
                     else if(this.tipoBD == ORACLE_DB){
@@ -243,6 +255,7 @@ public class BaseDeDatos {
                                            "fecha DATE, " +
                                            "hora TIME, " +
                                            "id_waspmote VARCHAR(255), " +
+                                           "bateria DOUBLE, " +
                                            "nivel_agua BINARY_FLOAT)";
                     }
 
@@ -253,6 +266,8 @@ public class BaseDeDatos {
                                           "fecha DATE, " +
                                           "hora TIME, " +
                                           "id_waspmote VARCHAR(255), " +
+                                          "bateria DOUBLE," +
+                                          "temperatura DOUBLE," +
                                           "acidez DOUBLE," +
                                           "oxigeno_disuelto DOUBLE)";
                     }
@@ -261,6 +276,8 @@ public class BaseDeDatos {
                                           "fecha DATE, " +
                                           "hora TIME, " +
                                           "id_waspmote VARCHAR(255), " +
+                                          "bateria REAL," +
+                                          "temperatura REAL," +
                                           "acidez REAL," +
                                           "oxigeno_disuelto REAL)";
                     }
@@ -269,12 +286,49 @@ public class BaseDeDatos {
                                           "fecha DATE, " +
                                           "hora TIME, " +
                                           "id_waspmote VARCHAR(255), " +
+                                          "bateria BINARY_FLOAT," +
+                                          "temperatura BINARY_FLOAT," +
                                           "acidez BINARY_FLOAT," +
                                           "oxigeno_disuelto BINARY_FLOAT)";
                     }
                 }
                 
-                if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_TEST){
+                else if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_BOSQUES){
+                    if(this.tipoBD == MYSQL_DB){ 
+                        consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
+                                           "fecha DATE, " +
+                                           "hora TIME, " +
+                                           "id_waspmote VARCHAR(255), " +
+                                           "bateria DOUBLE, " +
+                                           "temperatura DOUBLE, " +
+                                           "humedad DOUBLE, " +
+                                           "CO2ppm DOUBLE)";
+                    
+                    }
+                    else if(this.tipoBD == POSTGRE_DB){
+                        consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
+                                           "fecha DATE, " +
+                                           "hora TIME, " +
+                                           "id_waspmote VARCHAR(255), " +
+                                           "bateria DOUBLE, " +
+                                           "temperatura REAL," + 
+                                           "humedad REAL," + 
+                                           "CO2ppm REAL)";
+                    }
+                    else if(this.tipoBD == ORACLE_DB){
+                        consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
+                                           "fecha DATE, " +
+                                           "hora TIME, " +
+                                           "id_waspmote VARCHAR(255), " +
+                                           "bateria DOUBLE, " +
+                                           "temperatura BINARY_FLOAT," +
+                                           "humedad BINARY_FLOAT," +
+                                           "CO2ppm BINARY_FLOAT)";
+                    }
+
+                }
+                
+                else if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_TEST){
                 
                     if(this.tipoBD == MYSQL_DB){
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
@@ -283,6 +337,7 @@ public class BaseDeDatos {
                                            "id_waspmote VARCHAR(255), " +
                                            "bateria REAL," + 
                                            "temperatura REAL," +
+                                           "CO2 REAL," +
                                            "humedad REAL)";
                     }
                 }

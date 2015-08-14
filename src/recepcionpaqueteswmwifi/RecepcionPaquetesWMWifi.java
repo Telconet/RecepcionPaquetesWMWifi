@@ -6,6 +6,8 @@ package recepcionpaqueteswmwifi;
 
 import java.net.InetAddress;
 import java.net.ServerSocket;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  *
@@ -18,15 +20,17 @@ public class RecepcionPaquetesWMWifi {
      */
     
     public static final int WASPMOTE_CIUDAD = 1;
-    public static final int NUMERO_MEDICIONES_WM_CIUDAD = 8;
+    public static final int NUMERO_MEDICIONES_WM_CIUDAD = 6;            //BAT, TEMP, HUM, NOISE, DUST, LIGHT...
     public static final int WASPMOTE_CAMARONERA = 2;
-    public static final int NUMERO_MEDICIONES_WM_CAMARONERA = 3;        //verificar
+    public static final int NUMERO_MEDICIONES_WM_CAMARONERA = 4;        // BAT, PH, T, O2
     public static final int WASPMOTE_INUNDACIONES = 3;
-    public static final int NUMERO_MEDICIONES_WM_INUNDACIONES = 4;      //verificar
+    public static final int NUMERO_MEDICIONES_WM_INUNDACIONES = 2;      // BAT, UTRASOUND
+    public static final int WASPMOTE_BOSQUES = 4;
+    public static final int NUMERO_MEDICIONES_WM_BOSQUES = 4;      // BAT, TEMP, HUM, CO2
     
     //Usado solo para prueba WIFI
     public static final int WASPMOTE_TEST = 4;
-    public static final int NUMERO_MEDICIONES_WM_TEST = 3;      //verificar BAT, TEMP y HUMEDAD
+    public static final int NUMERO_MEDICIONES_WM_TEST = 3;      //verificar BAT, TEMP y HUMEDAD y CO2
     
     
     //java -jar programa <tipo> <puerto de escucha> <bd> <ruta archivo>
@@ -50,8 +54,13 @@ public class RecepcionPaquetesWMWifi {
             
             
             
-            ClienteNTP cliente = new ClienteNTP(conf.obtenerParametro(Configuracion.SERVIDOR_NTP));    
-            String[] tiempo = cliente.solicitarTiempo();
+            /*ClienteNTP cliente = new ClienteNTP(conf.obtenerParametro(Configuracion.SERVIDOR_NTP));    
+            String[] tiempo = cliente.solicitarTiempo();*/
+            Calendar calendario = Calendar.getInstance();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                
+             String horaInicio = sdf.format(calendario.getTime());
+             System.out.println(horaInicio);
             
             //String datos = "<=>\u0080\u0008#34543#BOSQUE_1#12#BAT:91#TCB:23.4#HUMB:33.3#";  //confirmado formato hora/fecha
             /*String datos = "<=>\u0080\u0004#34543#BOSQUE_1#12#BAT:91#STR:what#DATE:14-11-25#TIME:00-49-52+5#";
@@ -97,7 +106,7 @@ public class RecepcionPaquetesWMWifi {
             }*/
            
             //fin de test            
-            if(args.length < 5){
+            if(args.length < 4){
                 System.out.println("Numero insuficiente de argumentos");
                 System.exit(-1);
             }
@@ -119,6 +128,9 @@ public class RecepcionPaquetesWMWifi {
             }
             else if(args[0].toLowerCase().contains("camaronera")){
                 tipo = WASPMOTE_CAMARONERA;
+            }
+            else if(args[0].toLowerCase().contains("bosques")){
+                tipo = WASPMOTE_BOSQUES;
             }
             else if(args[0].toLowerCase().contains("test")){
                 tipo = WASPMOTE_TEST;
@@ -145,7 +157,7 @@ public class RecepcionPaquetesWMWifi {
             }
             
             //arg[4] es la ip
-            InetAddress addr = InetAddress.getByName(args[4]);
+            //InetAddress addr = InetAddress.getByName(args[4]);
             //Abrimos archivo configuracion
             //String ruta = args[3];
             //Configuracion conf = new Configuracion(ruta);
@@ -158,7 +170,8 @@ public class RecepcionPaquetesWMWifi {
             
             
             //Creamos el socket
-            ServerSocket socketServidor = new ServerSocket(puerto, 50, addr);
+            ServerSocket socketServidor = new ServerSocket(puerto, 50); // ServerSocket(puerto, 50, addr);
+            
             boolean escuchar = true;
             
             //Aceptamos conexiones de clientes...

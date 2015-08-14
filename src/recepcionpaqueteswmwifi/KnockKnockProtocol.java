@@ -103,6 +103,9 @@ public class KnockKnockProtocol {
         else if(tipo == RecepcionPaquetesWMWifi.WASPMOTE_CAMARONERA){
             numeroMediciones = RecepcionPaquetesWMWifi.NUMERO_MEDICIONES_WM_CAMARONERA;
         }
+        else if(tipo == RecepcionPaquetesWMWifi.WASPMOTE_BOSQUES){
+            numeroMediciones = RecepcionPaquetesWMWifi.NUMERO_MEDICIONES_WM_BOSQUES;
+        }
         else if(tipo == RecepcionPaquetesWMWifi.WASPMOTE_TEST){
             numeroMediciones = RecepcionPaquetesWMWifi.NUMERO_MEDICIONES_WM_TEST;
         }

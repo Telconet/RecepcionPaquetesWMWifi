@@ -169,15 +169,20 @@ public class Mediciones {
         
         if(!tiempoProcesado){
             if(!procesarTiempo()){
+                Calendar calendario = Calendar.getInstance();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                System.out.println("what");
+                
+                this.fecha = sdf.format(calendario.getTime());
                 //TODO...
-                ClienteNTP cliente = new ClienteNTP(this.servidorNTP);
+                /*ClienteNTP cliente = new ClienteNTP(this.servidorNTP);
                 String[] datos = cliente.solicitarTiempo();
                 this.fecha = datos[0];
                 this.hora = datos[1];
                 if(this.fecha != null && this.hora != null){
                     this.tiempoProcesado = true;
                 }
-                else this.tiempoProcesado = false;
+                else this.tiempoProcesado = false;*/
             }
         }
         return fecha;            //TODO
@@ -192,14 +197,23 @@ public class Mediciones {
         if(!tiempoProcesado){
             if(!procesarTiempo()){
                 //No existe tiempo en el paquete. Usamos tiempo del servidor.
-                ClienteNTP cliente = new ClienteNTP(this.servidorNTP);
+                
+                Calendar calendario = Calendar.getInstance();
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+                System.out.println("what");
+                
+                this.hora = sdf.format(calendario.getTime());
+                
+                this.tiempoProcesado = true;
+                /*ClienteNTP cliente = new ClienteNTP(this.servidorNTP);
                 String[] datos = cliente.solicitarTiempo();
                 this.fecha = datos[0];
                 this.hora = datos[1];
+                
                 if(this.fecha != null && this.hora != null){
                     this.tiempoProcesado = true;
                 }
-                else this.tiempoProcesado = false;
+                else this.tiempoProcesado = false;*/
             }
         }
         return hora;            //TODO  
