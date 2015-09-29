@@ -22,6 +22,8 @@ public class Configuracion {
     public static final String ORACLE_SID = "oracle-sid";
     public static final String SERVIDOR_NTP = "servidor-ntp";
     public static final String NOMBRE_TABLA_MEDICIONES = "nombre-tabla-mediciones";
+    public static final String NOMBRE_TABLA_MEDICIONES_ACTUALES = "nombre-tabla-mediciones-actuales";
+    public static final String RUTA_LISTA_WM = "ruta-lista-wm";
     
     //Propiedades donde almacenaremos los datos leidos del
     //archivo de texto

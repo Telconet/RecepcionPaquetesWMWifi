@@ -4,10 +4,16 @@
  */
 package recepcionpaqueteswmwifi;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -32,6 +38,9 @@ public class RecepcionPaquetesWMWifi {
     public static final int WASPMOTE_TEST = 4;
     public static final int NUMERO_MEDICIONES_WM_TEST = 3;      //verificar BAT, TEMP y HUMEDAD y CO2
     
+    public static HashMap<String, Boolean> calibracionWM;
+    public static final Calendar horaCalibracion = new GregorianCalendar(2015, 8, 19, 11, 30);
+    
     
     //java -jar programa <tipo> <puerto de escucha> <bd> <ruta archivo>
     //<bd>:     mysql, postgres, oracle
@@ -50,10 +59,6 @@ public class RecepcionPaquetesWMWifi {
             Configuracion conf = new Configuracion(ruta);
             
             
-            //BD test
-            
-            
-            
             /*ClienteNTP cliente = new ClienteNTP(conf.obtenerParametro(Configuracion.SERVIDOR_NTP));    
             String[] tiempo = cliente.solicitarTiempo();*/
             Calendar calendario = Calendar.getInstance();
@@ -61,49 +66,15 @@ public class RecepcionPaquetesWMWifi {
                 
              String horaInicio = sdf.format(calendario.getTime());
              System.out.println(horaInicio);
+             
+             //Ahora debemos obtener la lista de equipos monitoreados...
+             Map<String, Boolean> equiposCO2 = new HashMap();
             
             //String datos = "<=>\u0080\u0008#34543#BOSQUE_1#12#BAT:91#TCB:23.4#HUMB:33.3#";  //confirmado formato hora/fecha
             /*String datos = "<=>\u0080\u0004#34543#BOSQUE_1#12#BAT:91#STR:what#DATE:14-11-25#TIME:00-49-52+5#";
             System.out.println("tamaño paquete: " + datos.length());            
-            char[] arreglo = datos.toCharArray();
-            byte numero = (byte)arreglo[3];
-
-            System.out.println(datos);*/
+            char[] arreglo = datos.toCharArray();*/
             
-            /*KnockKnockProtocol kkp = new KnockKnockProtocol(conf.obtenerParametro(Configuracion.SERVIDOR_NTP));            
-            Mediciones med = kkp.procesarDatos(datos, WASPMOTE_TEST);
-            
-            
-            BaseDeDatos bd = new BaseDeDatos(BaseDeDatos.MYSQL_DB, null, conf.obtenerParametro(Configuracion.IP_BASE_DE_DATOS), 
-                                                            conf.obtenerParametro(Configuracion.USUARIO_BASE_DE_DATOS), 
-                                                            conf.obtenerParametro(Configuracion.CLAVE_BASE_DE_DATOS),
-                                                            Integer.parseInt(conf.obtenerParametro(Configuracion.PUERTO_BD)), 
-                                                            conf.obtenerParametro(Configuracion.ORACLE_SID), conf.obtenerParametro(Configuracion.NOMBRE_BASE_DATOS));
-
-            bd.conectar(); //conexion null
-            bd.insertarRegistro(WASPMOTE_TEST, med, conf.obtenerParametro(Configuracion.NOMBRE_TABLA_MEDICIONES));
-            bd.cerrar();*/
-            //Mediciones med = kkp.procesarDatos(datos, WASPMOTE_CIUDAD);
-            
-            
-             /*if(med != null){
-                
-                BaseDeDatos bd = new BaseDeDatos(BaseDeDatos.MYSQL_DB, null, conf.obtenerParametro(Configuracion.IP_BASE_DE_DATOS), 
-                                                        conf.obtenerParametro(Configuracion.USUARIO_BASE_DE_DATOS), 
-                                                        conf.obtenerParametro(Configuracion.CLAVE_BASE_DE_DATOS),
-                                                        Integer.parseInt(conf.obtenerParametro(Configuracion.PUERTO_BD)), null);
-                //para postgres
-                /*BaseDeDatos bd = new BaseDeDatos(BaseDeDatos.POSTGRE_DB, null, conf.obtenerParametro(Configuracion.IP_BASE_DE_DATOS), 
-                                                        conf.obtenerParametro(Configuracion.USUARIO_BASE_DE_DATOS), 
-                                                        conf.obtenerParametro(Configuracion.CLAVE_BASE_DE_DATOS),
-                                                        5432, null);
-                
-                bd.conectar(conf.obtenerParametro(Configuracion.NOMBRE_BASE_DATOS));
-                //TODO...
-                bd.insertarRegistro(WASPMOTE_TEST, med);
-                //bd.insertarRegistro(WASPMOTE_CIUDAD, med);
-                bd.cerrar();
-            }*/
            
             //fin de test            
             if(args.length < 4){
@@ -156,18 +127,18 @@ public class RecepcionPaquetesWMWifi {
                 tipoDB = BaseDeDatos.POSTGRE_DB;
             }
             
-            //arg[4] es la ip
-            //InetAddress addr = InetAddress.getByName(args[4]);
-            //Abrimos archivo configuracion
-            //String ruta = args[3];
-            //Configuracion conf = new Configuracion(ruta);
+            //Cargamos la lista de Waspmotes.
+            String rutaListaWM  = conf.obtenerParametro(Configuracion.RUTA_LISTA_WM);
+            calibracionWM = new HashMap<>();
             
-            /*String tmp = conf.obtenerParametro(Configuracion.CLAVE_BASE_DE_DATOS);
-            tmp = conf.obtenerParametro(Configuracion.IP_BASE_DE_DATOS);
-            tmp = conf.obtenerParametro(Configuracion.NOMBRE_BASE_DATOS);
-            tmp = conf.obtenerParametro(Configuracion.PUERTO_SERVIDOR);
-            tmp = conf.obtenerParametro(Configuracion.CLAVE_BASE_DE_DATOS);*/
+            //Leemos los nombres...
+            String lineaActual;
+            BufferedReader lector = new BufferedReader(new FileReader(rutaListaWM));
             
+            while ((lineaActual = lector.readLine()) != null) {
+                calibracionWM.put(lineaActual, Boolean.FALSE);
+                System.out.println(lineaActual);
+            }            
             
             //Creamos el socket
             ServerSocket socketServidor = new ServerSocket(puerto, 50); // ServerSocket(puerto, 50, addr);

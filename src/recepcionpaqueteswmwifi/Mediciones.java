@@ -23,8 +23,9 @@ public class Mediciones {
     int numeroMediciones;
     private String idWaspmote;
     
-    String fecha;
-    String hora;
+    private String fecha;
+    private String hora;
+    private String año;
     private boolean tiempoProcesado;
     private String servidorNTP;
     
@@ -61,6 +62,16 @@ public class Mediciones {
         this.hora = null;
         this.fecha = null;
         this.servidorNTP = servidorNTP;
+        
+        Calendar calendario = Calendar.getInstance();
+        SimpleDateFormat sdf_fecha = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf_año = new SimpleDateFormat("yyyy");
+        SimpleDateFormat sdf_hora = new SimpleDateFormat("HH:mm:ss");
+        
+        this.hora = sdf_hora.format(calendario.getTime());
+        this.fecha = sdf_fecha.format(calendario.getTime());
+        this.año = sdf_año.format(calendario.getTime());
+        
     }
     
     //Ya que una medicion puede tener 3 valores (ej. el acelerometro), devolvemos
@@ -167,24 +178,7 @@ public class Mediciones {
     //Obtener hora
     public String fechaMedicion(){
         
-        if(!tiempoProcesado){
-            if(!procesarTiempo()){
-                Calendar calendario = Calendar.getInstance();
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                System.out.println("what");
-                
-                this.fecha = sdf.format(calendario.getTime());
-                //TODO...
-                /*ClienteNTP cliente = new ClienteNTP(this.servidorNTP);
-                String[] datos = cliente.solicitarTiempo();
-                this.fecha = datos[0];
-                this.hora = datos[1];
-                if(this.fecha != null && this.hora != null){
-                    this.tiempoProcesado = true;
-                }
-                else this.tiempoProcesado = false;*/
-            }
-        }
+
         return fecha;            //TODO
         
     }
@@ -194,28 +188,6 @@ public class Mediciones {
     public String horaMedicion(){
         
         //#TIME:13-01-01# o #TIME:13-01-01-5# / #TIME:13-01-01+5#
-        if(!tiempoProcesado){
-            if(!procesarTiempo()){
-                //No existe tiempo en el paquete. Usamos tiempo del servidor.
-                
-                Calendar calendario = Calendar.getInstance();
-                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-                System.out.println("what");
-                
-                this.hora = sdf.format(calendario.getTime());
-                
-                this.tiempoProcesado = true;
-                /*ClienteNTP cliente = new ClienteNTP(this.servidorNTP);
-                String[] datos = cliente.solicitarTiempo();
-                this.fecha = datos[0];
-                this.hora = datos[1];
-                
-                if(this.fecha != null && this.hora != null){
-                    this.tiempoProcesado = true;
-                }
-                else this.tiempoProcesado = false;*/
-            }
-        }
         return hora;            //TODO  
     }
     
@@ -232,6 +204,9 @@ public class Mediciones {
         }
     }
     
+    public String añoMedicion(){
+        return this.año;
+    }
     //Agrega mediciones, haciendo el parsing necesario
     public int agregarMedicion(String medicion){
         try{
@@ -277,7 +252,7 @@ public class Mediciones {
         return conteo;
     }
     
-    //Procesar tiempo
+    //Procesar tiempo si es que lo encontramos en el frame...
     private boolean procesarTiempo(){
         try{
             int indiceHora = -1;
