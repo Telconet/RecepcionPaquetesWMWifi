@@ -1,10 +1,9 @@
-/*
+    /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package recepcionpaqueteswmwifi;
 
-import com.mysql.jdbc.StringUtils;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;

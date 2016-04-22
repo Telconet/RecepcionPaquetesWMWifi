@@ -1,7 +1,9 @@
 servidor-ntp = time.nist.gov
-ip-base-datos = 172.24.4.10
+ip-base-datos = 172.24.4.71
+ip-aws = 54.208.179.212
 usuario-base-datos = waspmote
 clave-base-datos = waspmote
 nombre-base-de-datos = waspmote_data
 puerto-BD = 3306
 nombre-tabla-mediciones = Mediciones_test2
+ruta-lista-wm = C:\\Users\\Eduardo\\Documents\\Trabajo\\Telconet\\Departamento Electrónico\\Telemetria Ciudad\\Codigo\\RecepcionPaquetesWMWifi\\lista_WM

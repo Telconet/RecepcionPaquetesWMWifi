@@ -35,7 +35,7 @@ public class RecepcionPaquetesWMWifi {
     public static final int NUMERO_MEDICIONES_WM_BOSQUES = 4;      // BAT, TEMP, HUM, CO2
     
     //Usado solo para prueba WIFI
-    public static final int WASPMOTE_TEST = 4;
+    public static final int WASPMOTE_TEST = 5;
     public static final int NUMERO_MEDICIONES_WM_TEST = 3;      //verificar BAT, TEMP y HUMEDAD y CO2
     
     public static HashMap<String, Boolean> calibracionWM;

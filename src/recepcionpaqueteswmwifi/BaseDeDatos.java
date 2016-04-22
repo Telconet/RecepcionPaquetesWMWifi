@@ -141,6 +141,28 @@ public class BaseDeDatos {
     public synchronized int verificarActualizarRegistro(int tipoMedicion, Mediciones mediciones, String nombreTabla){
         try{
             
+            String tipoStr = null;
+        
+            switch(tipoMedicion){
+                case RecepcionPaquetesWMWifi.WASPMOTE_BOSQUES:
+                    tipoStr = "bosque";
+                    break;
+                case RecepcionPaquetesWMWifi.WASPMOTE_CAMARONERA:
+                    tipoStr = "camaronera";
+                    break;
+                case RecepcionPaquetesWMWifi.WASPMOTE_CIUDAD:
+                    tipoStr = "ciudad";
+                    break;
+                case RecepcionPaquetesWMWifi.WASPMOTE_TEST:
+                    tipoStr = "test";
+                    break;
+                case RecepcionPaquetesWMWifi.WASPMOTE_INUNDACIONES:
+                    tipoStr = "inundaciones";
+                    break;
+                default:
+                        return -1;
+            }
+            
             //Verificar si existe tabla. Si no, la creamos. Cambiar a Mediciones...
             if(!existeTabla(nombreTabla)){
 
@@ -153,19 +175,20 @@ public class BaseDeDatos {
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                            "fecha DATE, " +
                                            "hora TIME, " +
-                                           "id_waspmote VARCHAR(255), " +
+                                           "id_wasp VARCHAR(255), " +
                                            "bateria DOUBLE," +
                                            "ruido DOUBLE," + 
                                            "polvo DOUBLE," +
                                            "humedad DOUBLE," +
                                            "luminosidad DOUBLE," + 
-                                           "temperatura DOUBLE)";
+                                           "temperatura DOUBLE," +
+                                           "CONSTRAINT FK_id_wasp_" + tipoStr + "_actual FOREIGN KEY (id_wasp) REFERENCES info_waspmotes(id_wasp)) ENGINE=InnoDB"; 
                     }
                     else if(this.tipoBD == POSTGRE_DB){
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                            "fecha DATE, " +
                                            "hora TIME, " +
-                                           "id_waspmote VARCHAR(255), " +
+                                           "id_wasp VARCHAR(255), " +
                                            "bateria REAL," +
                                            "ruido REAL," + 
                                            "polvo REAL," +
@@ -177,7 +200,7 @@ public class BaseDeDatos {
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                            "fecha DATE, " +
                                            "hora TIME, " +
-                                           "id_waspmote VARCHAR(255), " +
+                                           "id_wasp VARCHAR(255), " +
                                            "bateria BINARY_FLOAT," +
                                            "ruido BINARY_FLOAT," + 
                                            "polvo BINARY_FLOAT," +
@@ -191,15 +214,16 @@ public class BaseDeDatos {
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                            "fecha DATE, " +
                                            "hora TIME, " +
-                                           "id_waspmote VARCHAR(255), " +
+                                           "id_wasp VARCHAR(255), " +
                                            "bateria DOUBLE, " +
-                                           "nivel_agua DOUBLE)";
+                                           "nivel_agua DOUBLE," +
+                                           "CONSTRAINT FK_id_wasp_" + tipoStr + "_actual FOREIGN KEY (id_wasp) REFERENCES info_waspmotes(id_wasp)) ENGINE=InnoDB"; 
                     }
                     else if(this.tipoBD == POSTGRE_DB){
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                            "fecha DATE, " +
                                            "hora TIME, " +
-                                           "id_waspmote VARCHAR(255), " +
+                                           "id_wasp VARCHAR(255), " +
                                            "bateria DOUBLE, " +
                                            "nivel_agua REAL)";
                     }
@@ -207,7 +231,7 @@ public class BaseDeDatos {
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                            "fecha DATE, " +
                                            "hora TIME, " +
-                                           "id_waspmote VARCHAR(255), " +
+                                           "id_wasp VARCHAR(255), " +
                                            "bateria DOUBLE, " +
                                            "nivel_agua BINARY_FLOAT)";
                     }
@@ -218,17 +242,18 @@ public class BaseDeDatos {
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                           "fecha DATE, " +
                                           "hora TIME, " +
-                                          "id_waspmote VARCHAR(255), " +
+                                          "id_wasp VARCHAR(255), " +
                                           "bateria DOUBLE," +
                                           "temperatura DOUBLE," +
                                           "acidez DOUBLE," +
-                                          "oxigeno_disuelto DOUBLE)";
+                                          "oxigeno_disuelto DOUBLE," +
+                                          "CONSTRAINT FK_id_wasp_" + tipoStr + "_actual FOREIGN KEY (id_wasp) REFERENCES info_waspmotes(id_wasp)) ENGINE=InnoDB"; 
                     }
                     else if(this.tipoBD == POSTGRE_DB){
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                           "fecha DATE, " +
                                           "hora TIME, " +
-                                          "id_waspmote VARCHAR(255), " +
+                                          "id_wasp VARCHAR(255), " +
                                           "bateria REAL," +
                                           "temperatura REAL," +
                                           "acidez REAL," +
@@ -238,7 +263,7 @@ public class BaseDeDatos {
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                           "fecha DATE, " +
                                           "hora TIME, " +
-                                          "id_waspmote VARCHAR(255), " +
+                                          "id_wasp VARCHAR(255), " +
                                           "bateria BINARY_FLOAT," +
                                           "temperatura BINARY_FLOAT," +
                                           "acidez BINARY_FLOAT," +
@@ -251,18 +276,19 @@ public class BaseDeDatos {
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                            "fecha DATE, " +
                                            "hora TIME, " +
-                                           "id_waspmote VARCHAR(255), " +
+                                           "id_wasp VARCHAR(255), " +
                                            "bateria DOUBLE, " +
                                            "temperatura DOUBLE, " +
                                            "humedad DOUBLE, " +
-                                           "CO2ppm DOUBLE)";
+                                           "CO2ppm DOUBLE," + 
+                                           "CONSTRAINT FK_id_wasp_" + tipoStr + "_actual FOREIGN KEY (id_wasp) REFERENCES info_waspmotes(id_wasp)) ENGINE=InnoDB"; 
                     
                     }
                     else if(this.tipoBD == POSTGRE_DB){
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                            "fecha DATE, " +
                                            "hora TIME, " +
-                                           "id_waspmote VARCHAR(255), " +
+                                           "id_wasp VARCHAR(255), " +
                                            "bateria DOUBLE, " +
                                            "temperatura REAL," + 
                                            "humedad REAL," + 
@@ -272,7 +298,7 @@ public class BaseDeDatos {
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                            "fecha DATE, " +
                                            "hora TIME, " +
-                                           "id_waspmote VARCHAR(255), " +
+                                           "id_wasp VARCHAR(255), " +
                                            "bateria DOUBLE, " +
                                            "temperatura BINARY_FLOAT," +
                                            "humedad BINARY_FLOAT," +
@@ -287,11 +313,12 @@ public class BaseDeDatos {
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                            "fecha DATE, " +
                                            "hora TIME, " +
-                                           "id_waspmote VARCHAR(255), " +
+                                           "id_wasp VARCHAR(255), " +
                                            "bateria REAL," + 
                                            "temperatura REAL," +
                                            "CO2 REAL," +
-                                           "humedad REAL)";
+                                           "humedad REAL, " +
+                                           "CONSTRAINT FK_id_wasp_" + tipoStr + "_actual FOREIGN KEY (id_wasp) REFERENCES info_waspmotes(id_wasp)) ENGINE=InnoDB"; 
                     }
                 }
                 
@@ -305,7 +332,7 @@ public class BaseDeDatos {
             
             
             /*Creamos la consulta de seleccion, para ver si el waspmote existe en la tabla temporal*/
-            String consultaExistencia = "SELECT * FROM " + nombreTabla + " WHERE id_waspmote = '" + mediciones.obtenerIdWaspmote() +"'";
+            String consultaExistencia = "SELECT * FROM " + nombreTabla + " WHERE id_wasp = '" + mediciones.obtenerIdWaspmote() +"'";
             
             if(this.conexion == null){
                 this.conectar();
@@ -326,26 +353,26 @@ public class BaseDeDatos {
                     consultaActualizacion = "UPDATE " + nombreTabla + " SET fecha = '" + mediciones.fechaMedicion()+ "', hora = '" +  mediciones.horaMedicion() + "', bateria = " + mediciones.obtenerMedicion(Mediciones.SENSOR_BATERIA, 0)  + 
                                             ", ruido = " + mediciones.obtenerMedicion(Mediciones.SENSOR_MICROFONO, 0) + ", polvo = " + mediciones.obtenerMedicion(Mediciones.SENSOR_POLVO, 0) + 
                                             ", humedad = " + mediciones.obtenerMedicion(Mediciones.SENSOR_HUMEDAD, 0) + ", luminosidad = " + mediciones.obtenerMedicion(Mediciones.SENSOR_LUMINOSIDAD, 0) +  
-                                            ", temperatura = " + mediciones.obtenerMedicion(Mediciones.SENSOR_TEMPC, 0) + " WHERE id_waspmote = '" + mediciones.obtenerIdWaspmote() + "'";
+                                            ", temperatura = " + mediciones.obtenerMedicion(Mediciones.SENSOR_TEMPC, 0) + " WHERE id_wasp = '" + mediciones.obtenerIdWaspmote() + "'";
                 }
                 else if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_INUNDACIONES){
                     consultaActualizacion = "UPDATE " + nombreTabla + " SET fecha = '" + mediciones.fechaMedicion() + "', hora = '" + mediciones.horaMedicion() + 
                                             "',  bateria = " +  mediciones.obtenerMedicion(Mediciones.SENSOR_BATERIA, 0) +
-                                            ", nivel_agua = " + mediciones.obtenerMedicion(Mediciones.SENSOR_ULTRASONIDO, 0)  + " WHERE id_waspmote = '" + mediciones.obtenerIdWaspmote() + "'";
+                                            ", nivel_agua = " + mediciones.obtenerMedicion(Mediciones.SENSOR_ULTRASONIDO, 0)  + " WHERE id_wasp = '" + mediciones.obtenerIdWaspmote() + "'";
 
                 }
                 else if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_CAMARONERA){
                     consultaActualizacion = "UPDATE " + nombreTabla + " SET fecha = '" + mediciones.fechaMedicion()+ "', hora = '" + mediciones.horaMedicion() + 
                                         "', bateria = " + mediciones.obtenerMedicion(mediciones.SENSOR_BATERIA, 0)  + ", temperatura = " + mediciones.obtenerMedicion(Mediciones.SENSOR_TEMPC, 0) +  
                                         ", acidez = " + mediciones.obtenerMedicion(Mediciones.SENSOR_PH, 0) + ", oxigeno_disuelto = " +  mediciones.obtenerMedicion(Mediciones.SENSOR_OXIGENO_DISUELTO, 0) + 
-                                        " WHERE id_waspmote = '" + mediciones.obtenerIdWaspmote()+ "'";
+                                        " WHERE id_wasp = '" + mediciones.obtenerIdWaspmote()+ "'";
                 }
 
                 else if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_BOSQUES){
                     consultaActualizacion = "UPDATE " + nombreTabla + " SET fecha = '" + mediciones.fechaMedicion() + "', hora = '" + mediciones.horaMedicion() + 
                                         "', bateria = " +  mediciones.obtenerMedicion(mediciones.SENSOR_BATERIA, 0) + ", temperatura = " + mediciones.obtenerMedicion(Mediciones.SENSOR_TEMPC, 0) +  
                                         ", humedad = " + mediciones.obtenerMedicion(Mediciones.SENSOR_HUMEDAD, 0) + ", CO2ppm = " + mediciones.obtenerMedicion(Mediciones.SENSOR_CO2, 0) + 
-                                        " WHERE id_waspmote = '" + mediciones.obtenerIdWaspmote() + "'";
+                                        " WHERE id_wasp = '" + mediciones.obtenerIdWaspmote() + "'";
                                     
                 }
 
@@ -353,7 +380,7 @@ public class BaseDeDatos {
 
                     consultaActualizacion = "UPDATE " + nombreTabla + " fecha = '" + mediciones.fechaMedicion() +  "', hora = '" + mediciones.horaMedicion() +  
                                         "', bateria = " + mediciones.obtenerMedicion(Mediciones.SENSOR_BATERIA, 0) + ", temperatura = " + mediciones.obtenerMedicion(Mediciones.SENSOR_TEMPC, 0) + 
-                                        ", humedad = " + mediciones.obtenerMedicion(Mediciones.SENSOR_HUMEDAD, 0) + " WHERE id_waspmote = '" + mediciones.obtenerIdWaspmote() + "'";
+                                        ", humedad = " + mediciones.obtenerMedicion(Mediciones.SENSOR_HUMEDAD, 0) + " WHERE id_wasp = '" + mediciones.obtenerIdWaspmote() + "'";
                              
                                       
 
@@ -379,7 +406,7 @@ public class BaseDeDatos {
                 
                 if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_CIUDAD){
                 
-                    consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_waspmote, bateria, ruido, polvo, humedad, luminosidad, temperatura) VALUES ('" + 
+                    consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_wasp, bateria, ruido, polvo, humedad, luminosidad, temperatura) VALUES ('" + 
                                       mediciones.fechaMedicion() + "', '" + mediciones.horaMedicion() + "', '" +
                                       mediciones.obtenerIdWaspmote() + "', " + mediciones.obtenerMedicion(Mediciones.SENSOR_BATERIA, 0) + ", " + 
                                       mediciones.obtenerMedicion(Mediciones.SENSOR_MICROFONO, 0) + ", " + mediciones.obtenerMedicion(Mediciones.SENSOR_POLVO, 0) + ", " +
@@ -388,14 +415,14 @@ public class BaseDeDatos {
 
                 }
                 else if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_INUNDACIONES){
-                    consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_waspmote, bateria, nivel_agua) VALUES ('" + 
+                    consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_wasp, bateria, nivel_agua) VALUES ('" + 
                                       mediciones.fechaMedicion() + "', '" + mediciones.horaMedicion() + "', '" +
                                       mediciones.obtenerIdWaspmote() + "', " +  mediciones.obtenerMedicion(Mediciones.SENSOR_BATERIA, 0) + "," +
                                       mediciones.obtenerMedicion(Mediciones.SENSOR_ULTRASONIDO, 0) + ")";
 
                 }
                 else if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_CAMARONERA){
-                    consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_waspmote, bateria, temperatura, acidez, oxigeno_disuelto) VALUES ('" + 
+                    consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_wasp, bateria, temperatura, acidez, oxigeno_disuelto) VALUES ('" + 
                                       mediciones.fechaMedicion() + "', '" + mediciones.horaMedicion() + "', '" +
                                       mediciones.obtenerIdWaspmote() + "', " + mediciones.obtenerMedicion(mediciones.SENSOR_BATERIA, 0) + ", " +
                                       mediciones.obtenerMedicion(Mediciones.SENSOR_TEMPC, 0) + ", " + mediciones.obtenerMedicion(Mediciones.SENSOR_PH, 0) +  ", " + 
@@ -403,7 +430,7 @@ public class BaseDeDatos {
                 }
 
                 else if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_BOSQUES){
-                    consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_waspmote, bateria, temperatura, humedad, CO2ppm) VALUES ('" + 
+                    consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_wasp, bateria, temperatura, humedad, CO2ppm) VALUES ('" + 
                                       mediciones.fechaMedicion() + "', '" + mediciones.horaMedicion() + "', '" +
                                       mediciones.obtenerIdWaspmote() + "', " + mediciones.obtenerMedicion(mediciones.SENSOR_BATERIA, 0) + ", " +
                                       mediciones.obtenerMedicion(Mediciones.SENSOR_TEMPC, 0) + ", " + mediciones.obtenerMedicion(Mediciones.SENSOR_HUMEDAD, 0) +  ", " + 
@@ -412,7 +439,7 @@ public class BaseDeDatos {
 
                 else if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_TEST){
 
-                    consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_waspmote, bateria, temperatura, humedad) VALUES ('" + 
+                    consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_wasp, bateria, temperatura, humedad) VALUES ('" + 
                                       mediciones.fechaMedicion() + "', '" + mediciones.horaMedicion() + "', '" +
                                       mediciones.obtenerIdWaspmote() + "', " + mediciones.obtenerMedicion(Mediciones.SENSOR_BATERIA, 0) + ", " +
                                       mediciones.obtenerMedicion(Mediciones.SENSOR_TEMPC, 0) + ", " + mediciones.obtenerMedicion(Mediciones.SENSOR_HUMEDAD, 0) +  ")";
@@ -452,6 +479,28 @@ public class BaseDeDatos {
     //Almancenar mediciones...
     public synchronized int insertarRegistro(int tipoMedicion, Mediciones mediciones, String nombreTabla){
         
+        String tipoStr = null;
+        
+        switch(tipoMedicion){
+            case RecepcionPaquetesWMWifi.WASPMOTE_BOSQUES:
+                tipoStr = "bosque";
+                break;
+            case RecepcionPaquetesWMWifi.WASPMOTE_CAMARONERA:
+                tipoStr = "camaronera";
+                break;
+            case RecepcionPaquetesWMWifi.WASPMOTE_CIUDAD:
+                tipoStr = "ciudad";
+                break;
+            case RecepcionPaquetesWMWifi.WASPMOTE_TEST:
+                tipoStr = "test";
+                break;
+            case RecepcionPaquetesWMWifi.WASPMOTE_INUNDACIONES:
+                tipoStr = "inundaciones";
+                break;
+            default:
+                    return -1;
+        }
+        
         try{
             
             String consultaInsercion = null;
@@ -459,7 +508,7 @@ public class BaseDeDatos {
             //Creamos la consulta
             if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_CIUDAD){
                 
-                consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_waspmote, bateria, ruido, polvo, humedad, luminosidad, temperatura) VALUES ('" + 
+                consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_wasp, bateria, ruido, polvo, humedad, luminosidad, temperatura) VALUES ('" + 
                                   mediciones.fechaMedicion() + "', '" + mediciones.horaMedicion() + "', '" +
                                   mediciones.obtenerIdWaspmote() + "', " + mediciones.obtenerMedicion(Mediciones.SENSOR_BATERIA, 0) + ", " + 
                                   mediciones.obtenerMedicion(Mediciones.SENSOR_MICROFONO, 0) + ", " + mediciones.obtenerMedicion(Mediciones.SENSOR_POLVO, 0) + ", " +
@@ -468,14 +517,14 @@ public class BaseDeDatos {
                 
             }
             else if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_INUNDACIONES){
-                consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_waspmote, bateria, nivel_agua) VALUES ('" + 
+                consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_wasp, bateria, nivel_agua) VALUES ('" + 
                                   mediciones.fechaMedicion() + "', '" + mediciones.horaMedicion() + "', '" +
                                   mediciones.obtenerIdWaspmote() + "', " +  mediciones.obtenerMedicion(Mediciones.SENSOR_BATERIA, 0) + "," +
                                   mediciones.obtenerMedicion(Mediciones.SENSOR_ULTRASONIDO, 0) + ")";
 
             }
             else if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_CAMARONERA){
-                consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_waspmote, bateria, temperatura, acidez, oxigeno_disuelto) VALUES ('" + 
+                consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_wasp, bateria, temperatura, acidez, oxigeno_disuelto) VALUES ('" + 
                                   mediciones.fechaMedicion() + "', '" + mediciones.horaMedicion() + "', '" +
                                   mediciones.obtenerIdWaspmote() + "', " + mediciones.obtenerMedicion(mediciones.SENSOR_BATERIA, 0) + ", " +
                                   mediciones.obtenerMedicion(Mediciones.SENSOR_TEMPC, 0) + ", " + mediciones.obtenerMedicion(Mediciones.SENSOR_PH, 0) +  ", " + 
@@ -483,7 +532,7 @@ public class BaseDeDatos {
             }
             
             else if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_BOSQUES){
-                consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_waspmote, bateria, temperatura, humedad, CO2ppm) VALUES ('" + 
+                consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_wasp, bateria, temperatura, humedad, CO2ppm) VALUES ('" + 
                                   mediciones.fechaMedicion() + "', '" + mediciones.horaMedicion() + "', '" +
                                   mediciones.obtenerIdWaspmote() + "', " + mediciones.obtenerMedicion(mediciones.SENSOR_BATERIA, 0) + ", " +
                                   mediciones.obtenerMedicion(Mediciones.SENSOR_TEMPC, 0) + ", " + mediciones.obtenerMedicion(Mediciones.SENSOR_HUMEDAD, 0) +  ", " + 
@@ -492,7 +541,7 @@ public class BaseDeDatos {
             
             else if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_TEST){
                 
-                consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_waspmote, bateria, temperatura, humedad) VALUES ('" + 
+                consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_wasp, bateria, temperatura, humedad) VALUES ('" + 
                                   mediciones.fechaMedicion() + "', '" + mediciones.horaMedicion() + "', '" +
                                   mediciones.obtenerIdWaspmote() + "', " + mediciones.obtenerMedicion(Mediciones.SENSOR_BATERIA, 0) + ", " +
                                   mediciones.obtenerMedicion(Mediciones.SENSOR_TEMPC, 0) + ", " + mediciones.obtenerMedicion(Mediciones.SENSOR_HUMEDAD, 0) +  ")";
@@ -511,19 +560,20 @@ public class BaseDeDatos {
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                            "fecha DATE, " +
                                            "hora TIME, " +
-                                           "id_waspmote VARCHAR(255), " +
+                                           "id_wasp VARCHAR(255), " +
                                            "bateria DOUBLE," +
                                            "ruido DOUBLE," + 
                                            "polvo DOUBLE," +
                                            "humedad DOUBLE," +
                                            "luminosidad DOUBLE," + 
-                                           "temperatura DOUBLE)";
+                                           "temperatura DOUBLE," + 
+                                           "CONSTRAINT FK_id_wasp_" + tipoStr  + "_" + mediciones.añoMedicion() + " FOREIGN KEY (id_wasp) REFERENCES info_waspmotes(id_wasp)) ENGINE=InnoDB";
                     }
                     else if(this.tipoBD == POSTGRE_DB){
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                            "fecha DATE, " +
                                            "hora TIME, " +
-                                           "id_waspmote VARCHAR(255), " +
+                                           "id_wasp VARCHAR(255), " +
                                            "bateria REAL," +
                                            "ruido REAL," + 
                                            "polvo REAL," +
@@ -535,7 +585,7 @@ public class BaseDeDatos {
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                            "fecha DATE, " +
                                            "hora TIME, " +
-                                           "id_waspmote VARCHAR(255), " +
+                                           "id_wasp VARCHAR(255), " +
                                            "bateria BINARY_FLOAT," +
                                            "ruido BINARY_FLOAT," + 
                                            "polvo BINARY_FLOAT," +
@@ -549,15 +599,16 @@ public class BaseDeDatos {
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                            "fecha DATE, " +
                                            "hora TIME, " +
-                                           "id_waspmote VARCHAR(255), " +
+                                           "id_wasp VARCHAR(255), " +
                                            "bateria DOUBLE, " +
-                                           "nivel_agua DOUBLE)";
+                                           "nivel_agua DOUBLE," + 
+                                           "CONSTRAINT FK_id_wasp_" + tipoStr  + "_" + mediciones.añoMedicion() + " FOREIGN KEY (id_wasp) REFERENCES info_waspmotes(id_wasp)) ENGINE=InnoDB";
                     }
                     else if(this.tipoBD == POSTGRE_DB){
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                            "fecha DATE, " +
                                            "hora TIME, " +
-                                           "id_waspmote VARCHAR(255), " +
+                                           "id_wasp VARCHAR(255), " +
                                            "bateria DOUBLE, " +
                                            "nivel_agua REAL)";
                     }
@@ -565,7 +616,7 @@ public class BaseDeDatos {
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                            "fecha DATE, " +
                                            "hora TIME, " +
-                                           "id_waspmote VARCHAR(255), " +
+                                           "id_wasp VARCHAR(255), " +
                                            "bateria DOUBLE, " +
                                            "nivel_agua BINARY_FLOAT)";
                     }
@@ -576,17 +627,18 @@ public class BaseDeDatos {
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                           "fecha DATE, " +
                                           "hora TIME, " +
-                                          "id_waspmote VARCHAR(255), " +
+                                          "id_wasp VARCHAR(255), " +
                                           "bateria DOUBLE," +
                                           "temperatura DOUBLE," +
                                           "acidez DOUBLE," +
-                                          "oxigeno_disuelto DOUBLE)";
+                                          "oxigeno_disuelto DOUBLE," + 
+                                          "CONSTRAINT FK_id_wasp_" + tipoStr  + "_" + mediciones.añoMedicion() + " FOREIGN KEY (id_wasp) REFERENCES info_waspmotes(id_wasp)) ENGINE=InnoDB";
                     }
                     else if(this.tipoBD == POSTGRE_DB){
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                           "fecha DATE, " +
                                           "hora TIME, " +
-                                          "id_waspmote VARCHAR(255), " +
+                                          "id_wasp VARCHAR(255), " +
                                           "bateria REAL," +
                                           "temperatura REAL," +
                                           "acidez REAL," +
@@ -596,7 +648,7 @@ public class BaseDeDatos {
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                           "fecha DATE, " +
                                           "hora TIME, " +
-                                          "id_waspmote VARCHAR(255), " +
+                                          "id_wasp VARCHAR(255), " +
                                           "bateria BINARY_FLOAT," +
                                           "temperatura BINARY_FLOAT," +
                                           "acidez BINARY_FLOAT," +
@@ -609,18 +661,19 @@ public class BaseDeDatos {
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                            "fecha DATE, " +
                                            "hora TIME, " +
-                                           "id_waspmote VARCHAR(255), " +
+                                           "id_wasp VARCHAR(255), " +
                                            "bateria DOUBLE, " +
                                            "temperatura DOUBLE, " +
                                            "humedad DOUBLE, " +
-                                           "CO2ppm DOUBLE)";
+                                           "CO2ppm DOUBLE," +
+                                           "CONSTRAINT FK_id_wasp_" + tipoStr  + "_" + mediciones.añoMedicion() + " FOREIGN KEY (id_wasp) REFERENCES info_waspmotes(id_wasp)) ENGINE=InnoDB";
                     
                     }
                     else if(this.tipoBD == POSTGRE_DB){
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                            "fecha DATE, " +
                                            "hora TIME, " +
-                                           "id_waspmote VARCHAR(255), " +
+                                           "id_wasp VARCHAR(255), " +
                                            "bateria DOUBLE, " +
                                            "temperatura REAL," + 
                                            "humedad REAL," + 
@@ -630,7 +683,7 @@ public class BaseDeDatos {
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                            "fecha DATE, " +
                                            "hora TIME, " +
-                                           "id_waspmote VARCHAR(255), " +
+                                           "id_wasp VARCHAR(255), " +
                                            "bateria DOUBLE, " +
                                            "temperatura BINARY_FLOAT," +
                                            "humedad BINARY_FLOAT," +
@@ -645,11 +698,12 @@ public class BaseDeDatos {
                         consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
                                            "fecha DATE, " +
                                            "hora TIME, " +
-                                           "id_waspmote VARCHAR(255), " +
+                                           "id_wasp VARCHAR(255), " +
                                            "bateria REAL," + 
                                            "temperatura REAL," +
                                            "CO2 REAL," +
-                                           "humedad REAL)";
+                                           "humedad REAL," + 
+                                           "CONSTRAINT FK_id_wasp_" + tipoStr  + "_" + mediciones.añoMedicion() + " FOREIGN KEY (id_wasp) REFERENCES info_waspmotes(id_wasp)) ENGINE=InnoDB";
                     }
                 }
                 
