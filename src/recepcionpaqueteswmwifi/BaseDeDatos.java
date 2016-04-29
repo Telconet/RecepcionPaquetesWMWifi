@@ -164,164 +164,79 @@ public class BaseDeDatos {
             }
             
             //Verificar si existe tabla. Si no, la creamos. Cambiar a Mediciones...
+            //Creamos la consulta
+            /**
+             *   CREATE TABLE IF NOT EXISTS `sensorParser` (
+                `id` int(11) NOT NULL auto_increment,
+                `id_wasp` text character set utf8 collate utf8_unicode_ci,
+                `id_secret` text character set utf8 collate utf8_unicode_ci,
+                `frame_type` int(11) default NULL,
+                `frame_number` int(11) default NULL,
+                `sensor` text character set utf8 collate utf8_unicode_ci,
+                `value` text character set utf8 collate utf8_unicode_ci,
+                `timestamp` timestamp NOT NULL default CURRENT_TIMESTAMP,
+                `raw` text character set utf8 collate utf8_unicode_ci,
+                `parser_type` tinyint(3) NOT NULL default '0',
+                PRIMARY KEY  (`id`)) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+             */
             if(!existeTabla(nombreTabla)){
 
                 Statement consultaStatement = conexion.createStatement();
                 String consultaCreacion = "";
                 
-                if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_CIUDAD){
-                
-                    if(this.tipoBD == MYSQL_DB){
-                        consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
-                                           "fecha DATE, " +
-                                           "hora TIME, " +
-                                           "id_wasp VARCHAR(255), " +
-                                           "bateria DOUBLE," +
-                                           "ruido DOUBLE," + 
-                                           "polvo DOUBLE," +
-                                           "humedad DOUBLE," +
-                                           "luminosidad DOUBLE," + 
-                                           "temperatura DOUBLE," +
-                                           "CONSTRAINT FK_id_wasp_" + tipoStr + "_actual FOREIGN KEY (id_wasp) REFERENCES info_waspmotes(id_wasp)) ENGINE=InnoDB"; 
-                    }
-                    else if(this.tipoBD == POSTGRE_DB){
-                        consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
-                                           "fecha DATE, " +
-                                           "hora TIME, " +
-                                           "id_wasp VARCHAR(255), " +
-                                           "bateria REAL," +
-                                           "ruido REAL," + 
-                                           "polvo REAL," +
-                                           "humedad REAL," +
-                                           "luminosidad REAL," + 
-                                           "temperatura REAL)";
-                    }
-                    else if(this.tipoBD == ORACLE_DB){
-                        consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
-                                           "fecha DATE, " +
-                                           "hora TIME, " +
-                                           "id_wasp VARCHAR(255), " +
-                                           "bateria BINARY_FLOAT," +
-                                           "ruido BINARY_FLOAT," + 
-                                           "polvo BINARY_FLOAT," +
-                                           "humedad BINARY_FLOAT," +
-                                           "luminosidad BINARY_FLOAT," + 
-                                           "temperatura BINARY_FLOAT)";
-                    }
-                }
-                else if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_INUNDACIONES){
-                    if(this.tipoBD == MYSQL_DB){ 
-                        consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
-                                           "fecha DATE, " +
-                                           "hora TIME, " +
-                                           "id_wasp VARCHAR(255), " +
-                                           "bateria DOUBLE, " +
-                                           "nivel_agua DOUBLE," +
-                                           "CONSTRAINT FK_id_wasp_" + tipoStr + "_actual FOREIGN KEY (id_wasp) REFERENCES info_waspmotes(id_wasp)) ENGINE=InnoDB"; 
-                    }
-                    else if(this.tipoBD == POSTGRE_DB){
-                        consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
-                                           "fecha DATE, " +
-                                           "hora TIME, " +
-                                           "id_wasp VARCHAR(255), " +
-                                           "bateria DOUBLE, " +
-                                           "nivel_agua REAL)";
-                    }
-                    else if(this.tipoBD == ORACLE_DB){
-                        consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
-                                           "fecha DATE, " +
-                                           "hora TIME, " +
-                                           "id_wasp VARCHAR(255), " +
-                                           "bateria DOUBLE, " +
-                                           "nivel_agua BINARY_FLOAT)";
-                    }
-
-                }
-                else if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_CAMARONERA){
-                    if(this.tipoBD == MYSQL_DB){
-                        consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
-                                          "fecha DATE, " +
-                                          "hora TIME, " +
-                                          "id_wasp VARCHAR(255), " +
-                                          "bateria DOUBLE," +
-                                          "temperatura DOUBLE," +
-                                          "acidez DOUBLE," +
-                                          "oxigeno_disuelto DOUBLE," +
-                                          "CONSTRAINT FK_id_wasp_" + tipoStr + "_actual FOREIGN KEY (id_wasp) REFERENCES info_waspmotes(id_wasp)) ENGINE=InnoDB"; 
-                    }
-                    else if(this.tipoBD == POSTGRE_DB){
-                        consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
-                                          "fecha DATE, " +
-                                          "hora TIME, " +
-                                          "id_wasp VARCHAR(255), " +
-                                          "bateria REAL," +
-                                          "temperatura REAL," +
-                                          "acidez REAL," +
-                                          "oxigeno_disuelto REAL)";
-                    }
-                    else if(this.tipoBD == ORACLE_DB){
-                        consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
-                                          "fecha DATE, " +
-                                          "hora TIME, " +
-                                          "id_wasp VARCHAR(255), " +
-                                          "bateria BINARY_FLOAT," +
-                                          "temperatura BINARY_FLOAT," +
-                                          "acidez BINARY_FLOAT," +
-                                          "oxigeno_disuelto BINARY_FLOAT)";
-                    }
-                }
-                
-                else if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_BOSQUES){
-                    if(this.tipoBD == MYSQL_DB){ 
-                        consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
-                                           "fecha DATE, " +
-                                           "hora TIME, " +
-                                           "id_wasp VARCHAR(255), " +
-                                           "bateria DOUBLE, " +
-                                           "temperatura DOUBLE, " +
-                                           "humedad DOUBLE, " +
-                                           "CO2ppm DOUBLE," + 
-                                           "CONSTRAINT FK_id_wasp_" + tipoStr + "_actual FOREIGN KEY (id_wasp) REFERENCES info_waspmotes(id_wasp)) ENGINE=InnoDB"; 
+                //Todas las consultas son iguales
+                //"CREATE TABLE IF NOT EXISTS `sensorParser` (" +
+                if(this.tipoBD == MYSQL_DB ){
+                    String cola = "`id` int(11) NOT NULL auto_increment," +
+                    "`id_wasp` text character set utf8 collate utf8_unicode_ci," +
+                    "`id_secret` text character set utf8 collate utf8_unicode_ci," +
+                    "`frame_type` int(11) default NULL," +
+                    "`frame_number` int(11) default NULL,"+
+                    "`sensor` text character set utf8 collate utf8_unicode_ci," +
+                    "`value` text character set utf8 collate utf8_unicode_ci," +
+                    "`timestamp` timestamp NOT NULL default CURRENT_TIMESTAMP," +
+                    "`raw` text character set utf8 collate utf8_unicode_ci," +
+                    "`parser_type` tinyint(3) NOT NULL default '0'," +
+                    "PRIMARY KEY  (`id`)) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1";
                     
-                    }
-                    else if(this.tipoBD == POSTGRE_DB){
-                        consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
-                                           "fecha DATE, " +
-                                           "hora TIME, " +
-                                           "id_wasp VARCHAR(255), " +
-                                           "bateria DOUBLE, " +
-                                           "temperatura REAL," + 
-                                           "humedad REAL," + 
-                                           "CO2ppm REAL)";
-                    }
-                    else if(this.tipoBD == ORACLE_DB){
-                        consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
-                                           "fecha DATE, " +
-                                           "hora TIME, " +
-                                           "id_wasp VARCHAR(255), " +
-                                           "bateria DOUBLE, " +
-                                           "temperatura BINARY_FLOAT," +
-                                           "humedad BINARY_FLOAT," +
-                                           "CO2ppm BINARY_FLOAT)";
-                    }
-
+                    String cabeza = "CREATE TABLE IF NOT EXISTS " + nombreTabla + "(";
+                    
+                    consultaCreacion = cabeza + cola;
                 }
-                
-                else if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_TEST){
-                
-                    if(this.tipoBD == MYSQL_DB){
-                        consultaCreacion = "CREATE TABLE " + nombreTabla + " (" + 
-                                           "fecha DATE, " +
-                                           "hora TIME, " +
-                                           "id_wasp VARCHAR(255), " +
-                                           "bateria REAL," + 
-                                           "temperatura REAL," +
-                                           "CO2 REAL," +
-                                           "humedad REAL, " +
-                                           "CONSTRAINT FK_id_wasp_" + tipoStr + "_actual FOREIGN KEY (id_wasp) REFERENCES info_waspmotes(id_wasp)) ENGINE=InnoDB"; 
-                    }
+                else if(this.tipoBD == ORACLE_DB){
+                    
+                    String cola = "`id` number(11) NOT NULL auto_increment," +
+                    "`id_wasp` text  character set utf8 collate utf8_unicode_ci," +
+                    "`id_secret` text  character set utf8 collate utf8_unicode_ci," +
+                    "`frame_type` int(11) default NULL," +
+                    "`frame_number` int(11) default NULL,"+
+                    "`sensor` text  character set utf8 collate utf8_unicode_ci," +
+                    "`value` text  character set utf8 collate utf8_unicode_ci," +
+                    "`timestamp` timestamp NOT NULL default CURRENT_TIMESTAMP," +
+                    "`raw` text  character set utf8 collate utf8_unicode_ci," +
+                    "`parser_type` int(3) NOT NULL default '0'," +
+                    "PRIMARY KEY  (`id`)) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1";
+                    
+                    String cabeza = "CREATE TABLE IF NOT EXISTS " + nombreTabla + "(";
+                    
                 }
-                
+                else if(this.tipoBD == POSTGRE_DB){
+                    
+                    String cola = "`id` int(11) NOT NULL auto_increment," +
+                    "`id_wasp` CLOB  character set utf8 collate utf8_unicode_ci," +
+                    "`id_secret` CLOB  character set utf8 collate utf8_unicode_ci," +
+                    "`frame_type` number(11) default NULL," +
+                    "`frame_number` number(11) default NULL,"+
+                    "`sensor` CLOB  character set utf8 collate utf8_unicode_ci," +
+                    "`value` CLOB  character set utf8 collate utf8_unicode_ci," +
+                    "`timestamp` timestamp NOT NULL default CURRENT_TIMESTAMP," +
+                    "`raw` CLOB  character set utf8 collate utf8_unicode_ci," +
+                    "`parser_type` number(3) NOT NULL default '0'," +
+                    "PRIMARY KEY  (`id`)) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1";
+                    
+                    String cabeza = "CREATE TABLE IF NOT EXISTS " + nombreTabla + "(";
+                }
+             
                 //Ejecutamos la creacion de la tabla
                 if(consultaCreacion != null){
                     consultaStatement.execute(consultaCreacion); 
@@ -332,6 +247,8 @@ public class BaseDeDatos {
             
             
             /*Creamos la consulta de seleccion, para ver si el waspmote existe en la tabla temporal*/
+            /*junto con su medicion*/
+            //TODO: ACTUALIZAR DE AQUI HASTA FINAL DE LA FUNCION.
             String consultaExistencia = "SELECT * FROM " + nombreTabla + " WHERE id_wasp = '" + mediciones.obtenerIdWaspmote() +"'";
             
             if(this.conexion == null){
@@ -505,8 +422,14 @@ public class BaseDeDatos {
             
             String consultaInsercion = null;
             
-            //Creamos la consulta
+            
+            //
+            
+            
             if(tipoMedicion == RecepcionPaquetesWMWifi.WASPMOTE_CIUDAD){
+               
+                
+                
                 
                 consultaInsercion = "INSERT INTO " + nombreTabla + " (fecha, hora, id_wasp, bateria, ruido, polvo, humedad, luminosidad, temperatura) VALUES ('" + 
                                   mediciones.fechaMedicion() + "', '" + mediciones.horaMedicion() + "', '" +

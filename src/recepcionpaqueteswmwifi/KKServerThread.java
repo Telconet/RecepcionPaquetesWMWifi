@@ -44,9 +44,6 @@ public class KKServerThread  extends Thread{
             
             System.out.append(datos + "\n");
 
-            
-            /*}
-            else{*/
             Mediciones med = kkp.procesarDatos(datos, tipo);
 
             System.out.println("Datos procesados");

@@ -21,12 +21,14 @@ public class Mediciones {
     private String[] nombreMediciones;
     int numeroMediciones;
     private String idWaspmote;
+    private int tipoFrame;
+    private String idSerial;
+    private String secuenciaFrame;
+    
     
     private String fecha;
     private String hora;
     private String año;
-    private boolean tiempoProcesado;
-    private String servidorNTP;
     
     public static final String SENSOR_CO2 = "CO2";
     public static final String SENSOR_CO = "CO";
@@ -52,15 +54,17 @@ public class Mediciones {
     public static final String[] SENSORES = {SENSOR_CO2, SENSOR_CO, SENSOR_TEMPC, SENSOR_TEMPF, SENSOR_HUMEDAD, SENSOR_PRESION_ATMOSFERICA, SENSOR_MICROFONO,
                                                 SENSOR_POLVO, SENSOR_LUMINOSIDAD, SENSOR_BATERIA, SENSOR_HORA, SENSOR_FECHA, SENSOR_PH, SENSOR_OXIGENO_DISUELTO, SENSOR_ULTRASONIDO};
     
-    public Mediciones(int numeroMediciones, String idWaspmote, String servidorNTP){
+    public Mediciones(int numeroMediciones, String idWaspmote, int tipoFrame, String idSerial, String secuenciaFrame){
         this.medicion = new String[numeroMediciones];
         this.nombreMediciones = new String[numeroMediciones];
         this.numeroMediciones = 0;
         this.idWaspmote = idWaspmote;
-        this.tiempoProcesado = false;
         this.hora = null;
         this.fecha = null;
-        this.servidorNTP = servidorNTP;
+        this.secuenciaFrame = secuenciaFrame;
+        this.idSerial = idSerial;
+        this.tipoFrame = tipoFrame;
+                
         
         Calendar calendario = Calendar.getInstance();
         SimpleDateFormat sdf_fecha = new SimpleDateFormat("yyyy-MM-dd");
@@ -88,6 +92,18 @@ public class Mediciones {
     
     public String obtenerIdWaspmote(){
         return this.idWaspmote;
+    }
+    
+    private String obtenerIdSerial(){
+        return this.idSerial;
+    }
+    
+    private int obteneTipoFrame(){
+        return this.tipoFrame;
+    }
+    
+    private String obtenerSecuenciaFrame(){
+        return this.secuenciaFrame;
     }
     
     //Obtiene la medicion por nombre
@@ -176,8 +192,7 @@ public class Mediciones {
     
     //Obtener hora
     public String fechaMedicion(){
-        
-
+       
         return fecha;            //TODO
         
     }
@@ -349,11 +364,9 @@ public class Mediciones {
                 Logger log = Logger.getLogger(Class.class.getName());
                 log.addHandler(handler);
                 log.log(Level.WARNING, e.getMessage(), e);
-                 this.tiempoProcesado = false;
                 return false;
             }
             catch(Exception w){
-                this.tiempoProcesado = false;
                 return false;
             }
         }

@@ -70,10 +70,14 @@ public class RecepcionPaquetesWMWifi {
              //Ahora debemos obtener la lista de equipos monitoreados...
              Map<String, Boolean> equiposCO2 = new HashMap();
             
-            //String datos = "<=>\u0080\u0008#34543#BOSQUE_1#12#BAT:91#TCB:23.4#HUMB:33.3#";  //confirmado formato hora/fecha
+            String datos = "<=>\u0080\u0003#394775402#BOSQUE_1#123#BAT:91#TCB:23.4#HUMB:33.3#";  //confirmado formato hora/fecha
             /*String datos = "<=>\u0080\u0004#34543#BOSQUE_1#12#BAT:91#STR:what#DATE:14-11-25#TIME:00-49-52+5#";
             System.out.println("tamaño paquete: " + datos.length());            
             char[] arreglo = datos.toCharArray();*/
+             
+            KnockKnockProtocol kkp2 = new KnockKnockProtocol("time.nist.gov");
+            
+            kkp2.procesarDatos(datos, WASPMOTE_CIUDAD);
             
            
             //fin de test            

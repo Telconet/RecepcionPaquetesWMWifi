@@ -71,9 +71,22 @@ public class KnockKnockProtocol {
             //Obtenemos el wasmpote id
             int indiceTercerNumeral = datos.indexOf('#', indice + 1);
             String idWaspmote = datos.substring(indice+1, indiceTercerNumeral);
+            
+            //TODO:
+            //Obtener FRAME TYPE
+            int tipoFrame = datos.charAt(3);
+            
+            //OBTENER SERIAL ID
+            int indicePrimerNumeral = 5;
+            int indiceSegundoNumeral = datos.indexOf('#', indicePrimerNumeral+1); //primer # esta en posicion 5
+            String serial = datos.substring(indicePrimerNumeral+1, indiceSegundoNumeral);
+            
+            //OBTENER SECUENCIA
+            int indiceCuartoNumeral = datos.indexOf('#', indiceTercerNumeral+1);
+            String secuencia = datos.substring(indiceTercerNumeral+1, indiceCuartoNumeral);
 
             //Luego procesamos los datos...
-            Mediciones med = extraerDatosWaspmote(datos, tipo, idWaspmote);
+            Mediciones med = extraerDatosWaspmote(datos, tipo, idWaspmote, tipoFrame, serial, secuencia);
             
             //Almacenar datos 
             //TODO
@@ -88,7 +101,7 @@ public class KnockKnockProtocol {
     
     //Funciones para extraer datos del payload del frame enviado
     //por el waspmote.    
-    private Mediciones extraerDatosWaspmote(String info, int tipo, String idWaspmote){
+    private Mediciones extraerDatosWaspmote(String info, int tipo, String idWaspmote, int tipoFrame, String serial, String secuencia){
         
         //Vemos donde empezamos
         String infoSinHeader;
@@ -110,7 +123,7 @@ public class KnockKnockProtocol {
             numeroMediciones = RecepcionPaquetesWMWifi.NUMERO_MEDICIONES_WM_TEST;
         }
         
-        Mediciones mediciones = new Mediciones(numeroMediciones, idWaspmote, this.servidorNTP);
+        Mediciones mediciones = new Mediciones(numeroMediciones, idWaspmote, tipoFrame, serial, secuencia);  //
         
         int indice = -1;
         int conteo  = 0;
