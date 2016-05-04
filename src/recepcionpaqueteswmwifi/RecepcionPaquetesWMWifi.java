@@ -77,10 +77,16 @@ public class RecepcionPaquetesWMWifi {
             
            
             //fin de test            
-            if(args.length < 4){
+            if(args.length < 5){
                 System.out.println("Numero insuficiente de argumentos");
                 System.exit(-1);
             }
+            
+            boolean usarAWS = false;
+            if(args[4].equalsIgnoreCase("aws")){
+                usarAWS = true;
+            }
+            
             
             //Verificar opciones validas
             int puerto  = Integer.parseInt(args[1]);
@@ -147,7 +153,7 @@ public class RecepcionPaquetesWMWifi {
             
             //Aceptamos conexiones de clientes...
             while(escuchar){
-               new KKServerThread(socketServidor.accept(), tipo, tipoDB, conf).start();
+               new KKServerThread(socketServidor.accept(), tipo, tipoDB, conf, usarAWS).start();
             }
             
             socketServidor.close();

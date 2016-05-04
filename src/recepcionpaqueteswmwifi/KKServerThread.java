@@ -17,14 +17,16 @@ public class KKServerThread  extends Thread{
     private Socket socket = null;
     private int tipo = 0;
     private int tipoDB = 0;
-    private Configuracion conf = null;    
+    private Configuracion conf = null;  
+    private boolean usarAWS;
 
-    public KKServerThread(Socket socket, int tipo, int tipoDB, Configuracion conf) {
+    public KKServerThread(Socket socket, int tipo, int tipoDB, Configuracion conf, boolean usarAWS) {
         super("KKMultiServerThread");
         this.socket = socket;
         this.tipo = tipo;
         this.conf = conf;
         this.tipoDB = tipoDB;
+        this.usarAWS = usarAWS;
         
     }
     
@@ -62,16 +64,6 @@ public class KKServerThread  extends Thread{
 
                 bd.conectar(); //conexion null
                 
-                
-                //Amazon AWS...
-                BaseDeDatos bdAWS = new BaseDeDatos(tipoDB, null, conf.obtenerParametro(Configuracion.IP_AWS), 
-                                                        conf.obtenerParametro(Configuracion.USUARIO_BASE_DE_DATOS), 
-                                                        conf.obtenerParametro(Configuracion.CLAVE_BASE_DE_DATOS),
-                                                        Integer.parseInt(conf.obtenerParametro(Configuracion.PUERTO_BD)), 
-                                                        conf.obtenerParametro(Configuracion.ORACLE_SID), conf.obtenerParametro(Configuracion.NOMBRE_BASE_DATOS));
-
-                bdAWS.conectar(); //conexion null
-
                 //Para la tabla historica
                 bd.insertarRegistro(tipo, med, conf.obtenerParametro(Configuracion.NOMBRE_TABLA_MEDICIONES) + "_" +med.añoMedicion());   //En tabla historica
                 
@@ -79,15 +71,28 @@ public class KKServerThread  extends Thread{
                 if(bd.verificarActualizarRegistro(tipo, med, conf.obtenerParametro(Configuracion.NOMBRE_TABLA_MEDICIONES_ACTUALES)) < 0){
                     System.out.println("Error al actualizar registro");
                 }   
+                 bd.cerrar();
                 
-                if(bdAWS.verificarActualizarRegistro(tipo, med, conf.obtenerParametro(Configuracion.NOMBRE_TABLA_MEDICIONES_ACTUALES)) < 0){
-                    System.out.println("Error al actualizar registro (AWS)");
-                }   
+                 if(usarAWS){
+                     
+                     BaseDeDatos bdAWS = new BaseDeDatos(tipoDB, null, conf.obtenerParametro(Configuracion.IP_AWS), 
+                                                            conf.obtenerParametro(Configuracion.USUARIO_BASE_DE_DATOS), 
+                                                            conf.obtenerParametro(Configuracion.CLAVE_BASE_DE_DATOS),
+                                                            Integer.parseInt(conf.obtenerParametro(Configuracion.PUERTO_BD)), 
+                                                            conf.obtenerParametro(Configuracion.ORACLE_SID), conf.obtenerParametro(Configuracion.NOMBRE_BASE_DATOS));
+
+                    bdAWS.conectar(); //conexion null
+                    
+                    if(bdAWS.verificarActualizarRegistro(tipo, med, conf.obtenerParametro(Configuracion.NOMBRE_TABLA_MEDICIONES_ACTUALES)) < 0){
+                        System.out.println("Error al actualizar registro (AWS)");
+                    }   
+                    bdAWS.cerrar();
+                 }
                 
                 
                 
-                bd.cerrar();
-                bdAWS.cerrar();
+               
+                
             }
                 
                
